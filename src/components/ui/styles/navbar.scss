@@ -1,0 +1,66 @@
+.navbar {
+  .route {
+    position: relative;
+    color: #8f8f8f;
+    display: block;
+    font-size: 14px;
+    padding: 15px 0;
+    margin-bottom: 4px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    text-align: center;
+    z-index: 1;
+
+    &.active {
+      color: #666666;
+      background-color: white;
+    }
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      transition: transform 250ms ease-in-out;
+      transform: scaleX(0);
+      transform-origin: right;
+      background-color: white;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+
+    &:hover::before {
+      transform: scaleX(1);
+    }
+
+    &:hover {
+      background-color: white;
+      transition: 0.5s background-color ease-in-out ;
+    }
+
+    &__img {
+      height: 20px;
+      filter: grayscale(1);
+    }
+  }
+}
+
+@media screen and (max-width: 656px) {
+  .navbar {
+    .route {
+      border-radius: 3px;
+
+      &:hover {
+        transition: 0.3s background-color ease-in-out ;
+      }
+
+      &::before {
+        content: none;
+      }
+    }
+  }
+}
+

@@ -4,21 +4,33 @@ import './index.css'
 import 'normalize.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Servers} from "./pages/servers/Servers";
-import {TopBar} from "./components/ui/TopBar";
-import {Header} from "./components/ui/Header";
+import {RootLayout} from "./layouts/RootLayout";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Servers/>,
-        errorElement: <h2>Error loading servers</h2>
+        Component: RootLayout,
+        children: [
+            {
+                path: "/",
+                Component: Servers,
+                errorElement: <h2>Error loading servers</h2>,
+            },
+            {
+                path: "/servers",
+                Component: Servers,
+                errorElement: <h2>Error loading servers</h2>,
+            },
+            {
+                path: "*",
+                element: <><h1>404</h1><h2>Not Found</h2></>
+            }
+        ]
     }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <TopBar/>
-        <Header/>
         <RouterProvider router={router}/>
     </React.StrictMode>,
 )
