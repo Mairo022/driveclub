@@ -1,0 +1,51 @@
+@import "src/assets/variables";
+
+.servers {
+  color: #262326;
+  overflow: hidden;
+
+  .server {
+    &:first-of-type { border-top-left-radius: 0; }
+    border-radius: 2px;
+    padding: 20px 30px;
+    background-color: white;
+    margin-bottom: 10px;
+    box-shadow: 0 0 3px #CCC;
+
+    &__header {
+      display: flex;
+      align-items: center;
+
+      &__title {
+        font-family: Roboto Bold, $fonts_default;
+      }
+
+      &__join {
+        margin-left: auto;
+        font-family: Roboto Bold, $fonts_default;
+        font-size: 13px;
+        color: #23A7DC;
+
+        &:hover {
+          border-bottom: 1px solid #23A7DC;
+        }
+      }
+    }
+
+    &__session {
+      margin-top: 5px;
+    }
+
+    &__online {
+      margin-top: 5px;
+      font-size: 15px;
+    }
+
+    &__activity {
+      overflow: auto;
+      display: inline-block;
+      margin-top: 15px;
+      max-height: 410px;
+    }
+  }
+}
