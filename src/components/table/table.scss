@@ -1,0 +1,96 @@
+@import "../../assets/variables";
+
+.Table--online {
+  width: 100%;
+  max-width: 650px;
+}
+
+.Table {
+  table-layout: fixed;
+  border: 1px solid #ccc;
+  margin:0;
+  padding:0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 14px;
+
+  .header__row,
+  .body__row {
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+
+  .header__row__title {
+    text-transform: capitalize;
+    font-family: Roboto Medium;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .header__row__title,
+  .body__row__item {
+    padding: 10px;
+    text-align: center;
+    word-break: break-word;
+    text-overflow: ellipsis;
+  }
+}
+
+.Table {
+  .body__row__item:nth-child(1).name,
+  .header__row__title:nth-child(1).name {
+    text-align: start;
+  }
+
+  .body__row__item.name,
+  .header__row__title.name {
+    width: 25%;
+  }
+
+  .body__row__item.last,
+  .header__row__title.last,
+  .body__row__item.best,
+  .header__row__title.best {
+    width: 100px;
+  }
+}
+
+@mixin table-responsive($class-name, $max-width) {
+  @media screen and (max-width: #{$max-width}) {
+    .#{$class-name} {
+      border: 0;
+
+      .header {
+        display: none;
+      }
+
+      .header__row,
+      .body__row {
+        display: block;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #ddd;
+      }
+
+      .body__row__item {
+        display: block;
+        width: 100%!important;
+        text-align: right!important;
+        font-size: 13px;
+        border-bottom: 1px dotted #ccc;
+
+        &:last-child {
+          border-bottom: 0;
+        }
+
+        &:before {
+          content: attr(data-label);
+          float: left;
+          text-transform: uppercase;
+          font-family: Roboto Medium, $fonts_default;
+        }
+      }
+    }
+  }
+}
+
+@include table-responsive('Table--online', 600px);
