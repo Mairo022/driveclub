@@ -1,13 +1,13 @@
 @import "../../assets/variables";
 
 .Table--online {
-  width: 100%;
   max-width: 650px;
 }
 
 .Table {
   table-layout: fixed;
   border: 1px solid #ccc;
+  width: 100%;
   margin:0;
   padding:0;
   border-collapse: collapse;
@@ -22,7 +22,7 @@
 
   .header__row__title {
     text-transform: capitalize;
-    font-family: Roboto Medium;
+    font-family: Roboto Medium $fonts_default;
     font-size: 14px;
     letter-spacing: 0.5px;
   }
@@ -31,7 +31,6 @@
   .body__row__item {
     padding: 10px;
     text-align: center;
-    word-break: break-word;
     text-overflow: ellipsis;
   }
 }
@@ -44,14 +43,56 @@
 
   .body__row__item.name,
   .header__row__title.name {
-    width: 25%;
+    word-break: break-word;
   }
 
-  .body__row__item.last,
-  .header__row__title.last,
-  .body__row__item.best,
-  .header__row__title.best {
-    width: 100px;
+  &--online {
+    .body__row__item,
+    .header__row__title {
+      word-break: break-word;
+    }
+
+    .body__row__item.last,
+    .header__row__title.last,
+    .body__row__item.best,
+    .header__row__title.best {
+      width: 100px;
+    }
+
+    .body__row__item.name,
+    .header__row__title.name {
+      width: 25%;
+    }
+  }
+
+  &--drivers {
+    .body__row__item.\#,
+    .header__row__title.\# {
+      width: 70px;
+    }
+
+    .header__row__title.infr,
+    .body__row__item.infr,
+    .header__row__title.wins,
+    .body__row__item.wins {
+      width: 5%;
+    }
+
+    .header__row__title.poles,
+    .body__row__item.poles {
+      width: 5%;
+    }
+
+    .header__row__title.driven,
+    .body__row__item.driven,
+    .header__row__title.crashes,
+    .body__row__item.crashes,
+    .header__row__title.infr\/100km,
+    .body__row__item.infr\/100km,
+    .header__row__title.cr\/100km,
+    .body__row__item.cr\/100km {
+      width: 10%;
+    }
   }
 }
 
@@ -94,3 +135,4 @@
 }
 
 @include table-responsive('Table--online', 600px);
+@include table-responsive('Table--drivers', 1100px);

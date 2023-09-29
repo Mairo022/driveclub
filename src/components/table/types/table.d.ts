@@ -1,4 +1,4 @@
 interface ITable {
     data: {}[]
-    type: "online"
+    type: "online" | "drivers"
 }

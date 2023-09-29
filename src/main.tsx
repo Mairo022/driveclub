@@ -5,6 +5,7 @@ import 'normalize.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Servers} from "./pages/servers/Servers";
 import {RootLayout} from "./layouts/RootLayout";
+import {Drivers} from "./pages/drivers/Drivers";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
                 path: "/servers",
                 Component: Servers,
                 errorElement: <h2>Error loading servers</h2>,
+            },
+            {
+                path: "/drivers",
+                Component: Drivers,
+                errorElement: <h2>Error loading drivers</h2>,
             },
             {
                 path: "*",
