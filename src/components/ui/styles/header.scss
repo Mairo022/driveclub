@@ -1,12 +1,14 @@
+@import "src/assets/variables";
+
 .header {
   display: flex;
   align-items: center;
   margin-left: 150px;
-  padding: 20px 0;
+  padding: 25px 0;
   gap: 25px;
 
   .logo {
-    height: 50px;
+    width: 125px;
   }
 
   .title {
@@ -14,5 +16,13 @@
     color: #41423d;
     font-size: 2.1em;
     font-family: Roboto Black, Roboto, Arial, serif;
+  }
+}
+
+@media screen and (max-width: $responsiveWidth) {
+  .header {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0;
   }
 }

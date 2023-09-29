@@ -1,3 +1,5 @@
+@import "src/assets/variables";
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -16,4 +18,19 @@
     background-color: #DFDFDF;
     box-shadow: 0 0 3px #bababa;
   }
+}
+
+@media screen and (max-width: $responsiveWidth) {
+  .container {
+    padding: 0;
+  }
+
+  .navbar {
+    margin-bottom: 10px;
+  }
+
+  .page {
+    flex-basis: 100%!important;
+  }
+
 }

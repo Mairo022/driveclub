@@ -1,3 +1,5 @@
+@import "src/assets/variables";
+
 .navbar {
   .route {
     position: relative;
@@ -51,7 +53,7 @@
   }
 }
 
-@media screen and (max-width: 656px) {
+@media screen and (max-width: $responsiveWidth) {
   .navbar {
     .route {
       border-radius: 3px;
