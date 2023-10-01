@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Servers} from "./pages/servers/Servers";
 import {RootLayout} from "./layouts/RootLayout";
 import {Drivers} from "./pages/drivers/Drivers";
+import {Stats} from "./pages/stats/Stats";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
             {
                 path: "/drivers",
                 Component: Drivers,
+                errorElement: <h2>Error loading drivers</h2>,
+            },
+            {
+                path: "/stats",
+                Component: Stats,
                 errorElement: <h2>Error loading drivers</h2>,
             },
             {
