@@ -1,6 +1,6 @@
 interface IDrivers {
     "#": number
-    name: string
+    driver: string
     money: number
     wins: number
     podiums: number

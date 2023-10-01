@@ -36,13 +36,13 @@
 }
 
 .Table {
-  .body__row__item:nth-child(1).name,
-  .header__row__title:nth-child(1).name {
+  .body__row__item:nth-child(1).driver,
+  .header__row__title:nth-child(1).driver {
     text-align: start;
   }
 
-  .body__row__item.name,
-  .header__row__title.name {
+  .body__row__item.driver,
+  .header__row__title.driver {
     word-break: break-word;
   }
 
@@ -59,8 +59,8 @@
       width: 100px;
     }
 
-    .body__row__item.name,
-    .header__row__title.name {
+    .body__row__item.driver,
+    .header__row__title.driver {
       width: 25%;
     }
   }

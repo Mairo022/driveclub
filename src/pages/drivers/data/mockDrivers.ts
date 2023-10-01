@@ -1,7 +1,7 @@
 export const drivers: IDrivers[] = [
     {
         "#": 1,
-        name: "Afterburn",
+        driver: "Afterburn",
         money: 2255479,
         wins: 57,
         podiums: 75,
@@ -14,7 +14,7 @@ export const drivers: IDrivers[] = [
     },
     {
         "#": 2,
-        name: "Existenz",
+        driver: "Existenz",
         money: 537021,
         wins: 39,
         podiums: 45,

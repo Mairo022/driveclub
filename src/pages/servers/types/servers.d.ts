@@ -5,7 +5,7 @@ interface IServer {
     spots: number
     session: string
     drivers: {
-        name: string
+        driver: string
         car: string
     }[]
 }
