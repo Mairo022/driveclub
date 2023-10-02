@@ -1,4 +1,6 @@
 interface ITable {
     data: {}[]
-    type: "online" | "drivers"
+    type: tableType
 }
+
+type tableType = "online" | "drivers" | "stats"

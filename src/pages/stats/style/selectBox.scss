@@ -1,0 +1,121 @@
+.search {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: space-around;
+  gap: 15px 20px;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 15px;
+
+  .submit {
+    min-height: 50px;
+    width: 150px;
+    flex-grow: 1;
+    cursor: pointer;
+  }
+
+  .select-box {
+    position: relative;
+    flex-grow: 100;
+    width: 250px;
+    margin: 0 auto;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+    font-size: 18px;
+    color: #60666d;
+
+    &__current {
+      position: relative;
+      box-shadow: 0 0px 3px 2px transparentize(#000, 0.9);
+      cursor: pointer;
+      outline: none;
+      clip-path: inset(-1px -3px -3px -3px);
+
+      &:focus {
+        & + .select-box__list {
+          opacity: 1;
+          animation-name: none;
+
+          .select-box__option {
+            cursor: pointer;
+          }
+        }
+
+        .select-box__icon {
+          transform: translateY(-50%) rotate(180deg);
+        }
+      }
+    }
+
+    &__icon {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      width: 20px;
+      opacity: 0.3;
+      transition: 0.2s ease;
+    }
+
+    &__value {
+      display: flex;
+    }
+
+    &__input {
+      display: none;
+
+      &:checked + .select-box__input-text {
+        height: fit-content;
+        display: block;
+      }
+    }
+
+    &__input-text {
+      display: none;
+      width: 100%;
+      margin: 0;
+      padding: 15px 50px 15px 15px;
+      background-color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__list {
+      position: absolute;
+      width: 100%;
+      padding: 0;
+      list-style: none;
+      opacity: 0;
+      z-index: 10;
+
+      animation-name: HideList;
+      animation-duration: 0.5s;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: step-start;
+      box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+    }
+
+    &__option {
+      display: block;
+      padding: 15px;
+      background-color: #fff;
+
+      &:hover,
+      &:focus {
+        color: #546c84;
+        background-color: #fbfbfb;
+      }
+    }
+  }
+}
+
+@keyframes HideList {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
