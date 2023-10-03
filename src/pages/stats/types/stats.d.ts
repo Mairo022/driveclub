@@ -16,6 +16,9 @@ interface ITrackStats {
     "Split 1": string
     "Split 2": string
     "Split 3": string
+    date: string
+    tc: number
+    abs: number
 }
 
 interface ISelectBoxProps {

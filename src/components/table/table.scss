@@ -95,6 +95,17 @@
     }
   }
 
+  &--stats {
+    .header__row__title.tc,
+    .body__row__item.tc,
+    .header__row__title.abs,
+    .body__row__item.abs {
+      font-size: 13px;
+      text-transform: uppercase;
+      width: 50px;
+    }
+  }
+
   &--logs {
     .header__row__title.time,
     .body__row__item.time {
@@ -149,4 +160,4 @@
 
 @include table-responsive('Table--online', 600px);
 @include table-responsive('Table--drivers', 1100px);
-@include table-responsive('Table--stats', 656px);
+@include table-responsive('Table--stats', 850px);
