@@ -8,6 +8,7 @@ import {RootLayout} from "./layouts/RootLayout";
 import {Drivers} from "./pages/drivers/Drivers";
 import {Stats} from "./pages/stats/Stats";
 import {Logs} from "./pages/logs/Logs";
+import {Sessions} from "./pages/sessions/Sessions";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
                 path: "/logs",
                 Component: Logs,
                 errorElement: <h2>Error loading logs</h2>,
+            },
+            {
+                path: "/sessions",
+                Component: Sessions,
+                errorElement: <h2>Error loading sessions</h2>,
             },
             {
                 path: "*",

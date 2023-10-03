@@ -13,6 +13,10 @@ export function Navbar(): ReactElement {
                 <img className="route__img" src="src/assets/images/drivers.svg"/>
                 <p className="route__text">DRIVERS</p>
             </NavLink>
+            <NavLink className="route" to="/sessions">
+                <img className="route__img" src="src/assets/images/sessions.svg"/>
+                <p className="route__text">SESSIONS</p>
+            </NavLink>
             <NavLink className="route" to="/stats">
                 <img className="route__img" src="src/assets/images/stats.svg"/>
                 <p className="route__text">STATS</p>

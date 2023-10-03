@@ -1,0 +1,45 @@
+.sessions {
+  padding: 20px;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 20px;
+
+    .session {
+      padding: 20px 30px;
+      flex: 1 1;
+      min-width: 400px;
+      max-width: 600px;
+      border-radius: 10px;
+      background-color: white;
+      text-align: center;
+
+      &__details {
+        text-decoration: #848484 underline;
+        padding-bottom: 15px;
+      }
+
+      &__results {
+        display: flex;
+        gap: 0 15px;
+        justify-content: center;
+        font-family: Roboto Medium;
+        font-size: 15px;
+      }
+
+      &__date {
+        padding-top: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .sessions {
+    .session {
+      min-width: auto;
+    }
+  }
+}
