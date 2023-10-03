@@ -1,9 +1,9 @@
-import {ReactElement} from "react/ts5.0";
+import {ReactElement} from "react";
 import {nanoid} from "nanoid";
 import "./table.scss";
 
 export function Table(props: ITable): ReactElement {
-    const data: {}[] = props.data
+    const data: Array<object> = props.data
     const type = props.type
 
     return (

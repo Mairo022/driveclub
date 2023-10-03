@@ -7,5 +7,7 @@ interface IServer {
     drivers: {
         driver: string
         car: string
+        best: string
+        last: string
     }[]
 }

@@ -1,4 +1,4 @@
-import {ReactElement} from "react/ts5.0";
+import {ReactElement} from "react";
 import {servers} from "./data/mockServers";
 import "./style/servers.scss";
 import {Link} from "react-router-dom";
