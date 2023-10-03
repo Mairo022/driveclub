@@ -94,6 +94,19 @@
       width: 10%;
     }
   }
+
+  &--logs {
+    .header__row__title.time,
+    .body__row__item.time {
+      width: 190px;
+      text-align: left;
+    }
+
+    .header__row__title.event,
+    .body__row__item.event {
+      text-align: left;
+    }
+  }
 }
 
 @mixin table-responsive($class-name, $max-width) {

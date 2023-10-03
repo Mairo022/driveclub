@@ -7,6 +7,7 @@ import {Servers} from "./pages/servers/Servers";
 import {RootLayout} from "./layouts/RootLayout";
 import {Drivers} from "./pages/drivers/Drivers";
 import {Stats} from "./pages/stats/Stats";
+import {Logs} from "./pages/logs/Logs";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
                 path: "/stats",
                 Component: Stats,
                 errorElement: <h2>Error loading stats</h2>,
+            },
+            {
+                path: "/logs",
+                Component: Logs,
+                errorElement: <h2>Error loading logs</h2>,
             },
             {
                 path: "*",
