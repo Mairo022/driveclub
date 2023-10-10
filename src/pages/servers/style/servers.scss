@@ -1,16 +1,42 @@
 @import "src/assets/variables";
 
 .servers {
+  //display: flex;
+  flex-wrap: wrap;
   color: #262326;
   overflow: hidden;
+  padding: 20px;
+  gap: 20px;
 
   .server {
-    &:first-of-type { border-top-left-radius: 0; }
+    position: relative;
+    flex-grow: 1;
     border-radius: 2px;
     padding: 20px 30px;
-    background-color: white;
     margin-bottom: 10px;
     box-shadow: 0 0 3px #CCC;
+
+    &__dropdown {
+      position: absolute;
+      bottom: 20px;
+      right: 34px;
+      width: 15px;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    &__join {
+      position: absolute;
+      right: 30px;
+      font-family: Roboto Bold, $fonts_default;
+      font-size: 13px;
+      color: #23A7DC;
+      padding-top: 6.5px;
+
+      &:hover {
+        border-bottom: 1px solid #23A7DC;
+      }
+    }
 
     &__header {
       display: flex;
