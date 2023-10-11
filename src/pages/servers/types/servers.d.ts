@@ -11,3 +11,7 @@ interface IServer {
         last: string
     }[]
 }
+
+interface IServerProps {
+    server: IServer
+}

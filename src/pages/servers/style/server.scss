@@ -1,0 +1,91 @@
+@import "src/assets/variables";
+
+.server {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 20px 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 3px #CCC;
+
+  &__header {
+    display: flex;
+    align-items: center;
+
+    &__title {
+      font-family: Roboto Bold, $fonts_default;
+    }
+  }
+
+  &__session {
+    margin-top: 5px;
+  }
+
+  &__online {
+    margin-top: 5px;
+    font-size: 15px;
+  }
+
+  &__join {
+    position: absolute;
+    right: 30px;
+    padding-top: 6.5px;
+    font-family: Roboto Bold, $fonts_default;
+    font-size: 13px;
+    color: #23A7DC;
+
+    &:hover {
+      border-bottom: 1px solid #23A7DC;
+    }
+  }
+
+  &__dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 15px;
+    right: 27px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #F0F0F0;
+    box-shadow: 0 0 2px black;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+
+    &__arrow {
+      position: absolute;
+      width: 16px;
+      color: #1b82b3;
+      transform: translateY(1.5px);
+      transition: 0.2s ease-in-out;
+
+      &.open {
+        transform: scaleY(-1);
+      }
+    }
+
+    &:hover {
+      background: #F4F4F4;
+      box-shadow: 0 0 3.5px #777;
+    }
+  }
+
+  &__activity {
+    width: fit-content;
+    max-height: 0;
+    height: max-content;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: max-height 0.2s ease-out, margin-top 0.2s ease-in;
+
+    &.open {
+      margin-top: 15px;
+      max-height: 300px;
+      transition: max-height 0.2s ease-out, margin-top 0s ease;
+    }
+  }
+}
