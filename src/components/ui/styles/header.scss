@@ -1,6 +1,6 @@
 @import "src/assets/variables";
 
-.header {
+.site_header {
   display: flex;
   align-items: center;
   margin-left: 150px;
@@ -20,7 +20,7 @@
 }
 
 @media screen and (max-width: $responsiveWidth) {
-  .header {
+  .site_header {
     justify-content: center;
     flex-wrap: wrap;
     margin: 0;

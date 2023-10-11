@@ -3,7 +3,7 @@ import "./styles/header.scss";
 
 export function Header(): ReactElement {
     return (
-        <header className="header">
+        <header className="site_header">
             <img className="logo"
                  src="src/assets/images/logo-server.svg"
                  alt="Server Logo"
