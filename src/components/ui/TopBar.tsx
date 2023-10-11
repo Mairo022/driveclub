@@ -6,8 +6,8 @@ export function TopBar(): ReactElement {
 
     const serverButtonClassname = (inputServer: string): string => (
         server === inputServer
-            ? "button server active"
-            : "button server"
+            ? "button_server active"
+            : "button_server"
     )
 
     return (
@@ -22,7 +22,7 @@ export function TopBar(): ReactElement {
             >
                 SERVER 1
             </button>
-            <button className="button login">LOGIN</button>
+            <button className="button_server login">LOGIN</button>
         </div>
     )
 }
