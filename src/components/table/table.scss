@@ -14,12 +14,31 @@
   border-radius: 4px;
   border: 1px solid #ccc;
   font-size: 14px;
+  background-color: white;
+  box-shadow: 0 0 2px #ddd;
 
   .header__row__title {
-    text-transform: capitalize;
-    font-family: Roboto Medium $fonts_default;
-    font-size: 14px;
+    text-transform: uppercase;
+    font-family: Roboto Bold, $fonts_default;
+    font-size: 13px;
     letter-spacing: 0.5px;
+    background-color: #66a3ff;
+    color: #30343b;
+
+    &:first-child {
+      border-top-left-radius: 3px;
+    }
+    &:last-child {
+      border-top-right-radius: 3px;
+    }
+  }
+
+  .body__row__item {
+    color: #3c4752;
+
+    &:first-child {
+      font-family: Roboto Medium, $fonts_default;
+    }
   }
 
   .header__row__title,
@@ -36,13 +55,9 @@
 }
 
 .Table {
-  .body__row__item:nth-child(1).driver,
-  .header__row__title:nth-child(1).driver {
-    text-align: start;
-  }
-
   .body__row__item.driver,
   .header__row__title.driver {
+    text-align: left;
     word-break: break-word;
   }
 
@@ -68,19 +83,36 @@
   &--drivers {
     .body__row__item.\#,
     .header__row__title.\# {
-      width: 70px;
+      width: 40px;
+      text-align: left;
+      white-space: nowrap;
     }
 
     .header__row__title.infr,
     .body__row__item.infr,
     .header__row__title.wins,
     .body__row__item.wins {
-      width: 5%;
+      width: 65px;
+    }
+
+    .body__row__item.driver,
+    .header__row__title.driver {
+      width: 10%;
+    }
+
+    .body__row__item.money,
+    .header__row__title.money {
+      width: 10%;
+    }
+
+    .body__row__item.podiums,
+    .header__row__title.podiums {
+      width: 100px;
     }
 
     .header__row__title.poles,
     .body__row__item.poles {
-      width: 5%;
+      width: 60px;
     }
 
     .header__row__title.driven,
@@ -120,38 +152,48 @@
   }
 }
 
+.Table--drivers {
+  .header__row__title:hover {
+    cursor: pointer;
+    background-color: #5791de;
+  }
+}
+
 @mixin table-responsive($class-name, $max-width) {
   @media screen and (max-width: #{$max-width}) {
     .#{$class-name} {
       border: 0;
+      background: transparent;
+      box-shadow: none;
 
       .header {
         display: none;
       }
 
-      .header__row,
       .body__row {
         display: block;
-        margin-bottom: 10px;
-        border-bottom: 2px solid #ddd;
-      }
+        margin-bottom: 20px;
+        background: white;
+        box-shadow: 0 0 3px #ccc;
+        border-radius: 3px;
 
-      .body__row__item {
-        display: block;
-        width: 100%!important;
-        text-align: right!important;
-        font-size: 13px;
-        border-bottom: 1px dotted #ccc;
+        &__item {
+          display: block;
+          width: 100%!important;
+          text-align: right!important;
+          font-size: 13px;
+          border-bottom: 1px dotted #ccc;
 
-        &:last-child {
-          border-bottom: 0;
-        }
+          &:last-child {
+            border-bottom: 0;
+          }
 
-        &:before {
-          content: attr(data-label);
-          float: left;
-          text-transform: uppercase;
-          font-family: Roboto Medium, $fonts_default;
+          &:before {
+            content: attr(data-label);
+            float: left;
+            text-transform: uppercase;
+            font-family: Roboto Bold, $fonts_default;
+          }
         }
       }
     }
