@@ -6,25 +6,25 @@
 
 .Table {
   table-layout: fixed;
-  border: 1px solid #ccc;
   width: 100%;
-  margin:0;
-  padding:0;
-  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  border-collapse: separate;
   border-spacing: 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
   font-size: 14px;
-
-  .header__row,
-  .body__row {
-    border: 1px solid #ddd;
-    padding: 5px;
-  }
 
   .header__row__title {
     text-transform: capitalize;
     font-family: Roboto Medium $fonts_default;
     font-size: 14px;
     letter-spacing: 0.5px;
+  }
+
+  .header__row__title,
+  .body__row:not(:last-child) .body__row__item {
+    border-bottom: 1px solid #ccc;
   }
 
   .header__row__title,
