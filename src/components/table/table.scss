@@ -55,10 +55,17 @@
 }
 
 .Table {
-  .body__row__item.driver,
-  .header__row__title.driver {
+  .body__row__item.name,
+  .header__row__title.name {
     text-align: left;
     word-break: break-word;
+  }
+
+  .body__row__item.\#,
+  .header__row__title.\# {
+    width: 4%;
+    text-align: left;
+    white-space: nowrap;
   }
 
   &--online {
@@ -74,20 +81,13 @@
       width: 100px;
     }
 
-    .body__row__item.driver,
-    .header__row__title.driver {
+    .body__row__item.name,
+    .header__row__title.name {
       width: 25%;
     }
   }
 
   &--drivers {
-    .body__row__item.\#,
-    .header__row__title.\# {
-      width: 40px;
-      text-align: left;
-      white-space: nowrap;
-    }
-
     .header__row__title.infr,
     .body__row__item.infr,
     .header__row__title.wins,
@@ -95,8 +95,8 @@
       width: 65px;
     }
 
-    .body__row__item.driver,
-    .header__row__title.driver {
+    .body__row__item.name,
+    .header__row__title.name {
       width: 10%;
     }
 
@@ -200,6 +200,6 @@
   }
 }
 
-@include table-responsive('Table--online', 600px);
-@include table-responsive('Table--drivers', 1100px);
+@include table-responsive('Table--online', 740px);
+@include table-responsive('Table--drivers', 1250px);
 @include table-responsive('Table--stats', 850px);
