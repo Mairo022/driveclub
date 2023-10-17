@@ -3,34 +3,38 @@ import {Table} from "../../components/table/Table";
 import "./style/drivers.scss";
 import { getDrivers } from "../../services/driversService";
 import { FETCH_STATUS } from "../../data/constants";
-import {drivers as mockDrivers} from "./data/mockDrivers";
+import { AxiosResponse } from "axios";
 
 export function Drivers(): ReactElement {
-    const [fetchStatus, setFetchStatus] = useState(FETCH_STATUS.IDLE)
-    const [error, setError] = useState()
-    const [drivers, setDrivers] = useState<IDrivers[]>(mockDrivers)
+    const [status, setStatus] = useState<string>(FETCH_STATUS.IDLE)
+    const [error, setError] = useState<string | null>(null)
+    const [drivers, setDrivers] = useState<IDriver[]>([])
 
-    function adjustFieldNames(drivers: any): IDrivers[] {
-        // Server gives nulls for these two, despite existing in db
-        return drivers.map(({crashes_per_hundred_km, infr_per_hundred_km, ...rest}) => ({
-            "infr/100km": infr_per_hundred_km,
+    const isLoading = status === FETCH_STATUS.LOADING
+    const isSuccess = status === FETCH_STATUS.SUCCESS
+    const isError = status === FETCH_STATUS.ERROR
+
+    function adjustFieldNames(drivers: IDriverServer[]): IDriver[] {
+        return drivers.map(({crashes_per_hundred_km, infr_per_hundred_km,...rest}) => ({
+            ...rest,
             "cr/100km": crashes_per_hundred_km,
-            ...rest
+            "infr/100km": infr_per_hundred_km
         }))
     }
 
     async function fetchDrivers(): Promise<void> {
         try {
-            const response = await getDrivers()
-            const drivers = response.data.content
+            setStatus(FETCH_STATUS.LOADING)
+
+            const response: AxiosResponse = await getDrivers()
+            const drivers: IDriverServer[] = response.data.content
 
             if (drivers && drivers.length > 0) {
-                console.log(drivers)
                 setDrivers(adjustFieldNames(drivers))
-                setFetchStatus(FETCH_STATUS.SUCCESS)
+                setStatus(FETCH_STATUS.SUCCESS)
             }
         } catch (e: any) {
-            setFetchStatus(FETCH_STATUS.ERROR)
+            setStatus(FETCH_STATUS.ERROR)
             setError(e?.message)
         }
     }
@@ -41,7 +45,9 @@ export function Drivers(): ReactElement {
 
     return (
         <article className="drivers">
-            <Table data={drivers} type="drivers"/>
+            {isSuccess && <Table data={drivers} type="drivers"/>}
+            {isError && <span className="error">{error}</span>}
+            {isLoading && <span className="loading">Loading...</span>}
         </article>
     )
 }
