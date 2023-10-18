@@ -1,4 +1,4 @@
-export function buildRequestParams(filter: Partial<IPageRequest>): string {
+export function buildRequestParams(filter: IPageRequest): string {
     const {page, size, sort, direction} = filter
     const paramsMap = new Map<IRequestParams, string>()
     let params = ""
