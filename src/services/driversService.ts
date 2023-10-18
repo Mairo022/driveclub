@@ -1,10 +1,13 @@
 import axios, { AxiosPromise } from "axios";
-import { IPageResponse } from "./types/services";
+import { buildRequestParams } from "./restUtils";
 
-const apiURL: string = import.meta.env.VITE_API_URL + "drivers"
+const apiURL: string = import.meta.env.VITE_API_URL + "/drivers"
 
-export function getDrivers(): AxiosPromise<IPageResponse<IDriver[]>> {
-    return axios.get(`${apiURL}/getDrivers`)
+export function getDrivers(filter: IPageRequest): AxiosPromise<IPageResponse<IDriver[]>> {
+    const params: string = buildRequestParams(filter)
+    const url = `${apiURL}/getDrivers?${params}`
+
+    return axios.get(url)
 }
 
 export function saveDriver(driver: IDriver): AxiosPromise<IDriver> {

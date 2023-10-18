@@ -3,8 +3,14 @@ import {nanoid} from "nanoid";
 import "./table.scss";
 
 export function Table(props: ITable): ReactElement {
+    const indexStart = getIndex(props.pagination)
     const data: Array<object> = props.data
     const type = props.type
+
+    function getIndex(pagination: IPaginationSB | undefined): number {
+        if (!pagination || pagination.number === 0) return 1
+        return pagination.size * pagination.number + 1
+    }
 
     return (
         <table className={`Table Table--${type}`}>
@@ -19,7 +25,7 @@ export function Table(props: ITable): ReactElement {
             <tbody className="body">{
                 data.map((obj: any, i) => (
                     <tr className="body__row" key={nanoid()} data-id={obj?.id}>
-                        <td className={`body__row__item #`} key={nanoid()} data-label="#">{i+1}</td>{
+                        <td className={`body__row__item #`} key={nanoid()} data-label="#">{indexStart+i}</td>{
                             Object.entries(obj).map(([key, value]: any, i) => (key !== "id" &&
                                 <td className={`body__row__item ${key}`} key={i} data-label={key}>{value}</td>
                             ))}

@@ -1,15 +1,20 @@
-export type ISortDirection = 'asc' | 'desc' | '';
+type ISortDirection = 'asc' | 'desc';
+type IRequestParams = "page" | "size" | "sort"
 
-export interface IPageResponse<T> {
+interface IPageResponse<T> extends IPaginationSB {
     content: T;
-    totalElements: number;
-    number: number;
-    totalPages: number;
 }
 
-export interface IPageRequest {
-    pageIndex: number;
-    pageSize: number;
+interface IPaginationSB {
+    totalElements: number;
+    totalPages: number;
+    number: number;
+    size: number
+}
+
+interface IPageRequest {
+    page: number;
+    size: number;
     sort: string;
     direction: ISortDirection;
 }
