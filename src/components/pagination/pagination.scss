@@ -1,0 +1,21 @@
+.pagination {
+  height: auto;
+
+  & > .page {
+    width: 25px;
+    height: 25px;
+    margin: 3px;
+    cursor: pointer;
+
+    &--active {
+      background-color: #1b82b3;
+    }
+  }
+
+  & > .step {
+    height: 25px;
+    width: 25px;
+    margin: 5px 3px;
+    cursor: pointer;
+  }
+}

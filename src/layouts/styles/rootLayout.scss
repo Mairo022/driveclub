@@ -6,11 +6,11 @@
   width: 100%;
   padding: 0 30px 30px;
 
-  .navbar {
+  & > .navbar {
     flex: 1 0 120px;
   }
 
-  .page {
+  & > .page {
     flex: 1 0 calc(100% - 120px);
     min-width: 70vw;
     min-height: 800px;
@@ -23,14 +23,14 @@
 @media screen and (max-width: $responsiveWidth) {
   .container {
     padding: 0;
-  }
 
-  .navbar {
-    margin-bottom: 10px;
-  }
+    & > .navbar {
+      margin-bottom: 10px;
+    }
 
-  .page {
-    flex-basis: 100%!important;
+    & > .page {
+      flex-basis: 100%;
+    }
   }
 
 }
