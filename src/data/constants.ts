@@ -4,3 +4,5 @@ export const FETCH_STATUS = {
     SUCCESS: "success",
     ERROR: "error"
 }
+
+export const TABLE_PAGES = 5
