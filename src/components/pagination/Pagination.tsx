@@ -43,14 +43,16 @@ export function Pagination(props: IPagination): ReactElement {
             <button className="step"
                     disabled={pageNow === 0}
                     onClick={() => {handlePaging(0)}}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                    <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"/><path d="M24 24H0V0h24v24z" fill="none"/>
+                <svg strokeWidth={20} stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 512 512">
+                    <path d="m297.2 478 20.7-21.6L108.7 256 317.9 55.6 297.2 34 65.5 256l231.7 222zM194.1 256 425.8 34l20.7 21.6L237.3 256l209.2 200.4-20.7 21.6-231.7-222z" />
                 </svg>
             </button>
             <button className="step"
                     disabled={pageNow === 0}
                     onClick={() => {handlePaging(pageNow-1)}}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                <svg strokeWidth={0.8} stroke="currentColor" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve">
+                    <path d="M17.2 23.7 5.4 12 17.2.3l1.3 1.4L8.4 12l10.1 10.3z" />
+                </svg>
             </button>{
 
             pages.map((page, i) => (
@@ -62,16 +64,15 @@ export function Pagination(props: IPagination): ReactElement {
             <button className="step"
                     disabled={pageNow === pagesTotal}
                     onClick={() => {handlePaging(pageNow+1)}}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                    <path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                <svg strokeWidth={0.8} stroke="currentColor" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve">
+                    <path d="M6.8 0.3 18.6 12 6.8 23.7 5.5 22.3 15.6 12 5.5 1.7z" />
                 </svg>
             </button>
             <button className="step"
                     disabled={pageNow === pagesTotal}
                     onClick={() => {handlePaging(pagesTotal)}}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                    <path d="M0 0h24v24H0V0z" fill="none"/>
-                    <path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"/>
+                <svg strokeWidth={20} stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 512 512">
+                    <path d="m297.2 478 20.7-21.6L108.7 256 317.9 55.6 297.2 34 65.5 256l231.7 222zM194.1 256 425.8 34l20.7 21.6L237.3 256l209.2 200.4-20.7 21.6-231.7-222z" transform="rotate(180 256 256)" />
                 </svg>
             </button>
         </div>

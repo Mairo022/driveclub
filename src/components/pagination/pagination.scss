@@ -1,21 +1,68 @@
-.pagination {
-  height: auto;
+@import "../../assets/variables";
 
-  & > .page {
-    width: 25px;
-    height: 25px;
-    margin: 3px;
+.pagination {
+  display: flex;
+  margin: 10px auto 0;
+  width: fit-content;
+  border-radius: 7px;
+  background-color: white;
+  box-shadow: 0 0 3px #ccc;
+
+  & > .page,
+  & > .step {
+    height: 45px;
+    border: none;
+    line-height: 16px;
+    font-size: 16px;
+    font-family: Roboto Medium, $fonts_default;
+    color: #9a9a9a;
+    background: transparent;
+    transition: 0.2s color ease-in-out;
     cursor: pointer;
 
+    &:hover {
+      background-color: rgba(0,0,0,0.05);
+      transition: 0.2s color ease-in-out;
+      color: #1f95cc;
+    }
+  }
+
+  & > .page {
+    width: 45px;
+
     &--active {
-      background-color: #1b82b3;
+      color: #1f95cc;
     }
   }
 
   & > .step {
-    height: 25px;
-    width: 25px;
-    margin: 5px 3px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+
+    &:first-child {
+      margin-left: 15px;
+    }
+
+    &:last-child {
+      margin-right: 15px;
+    }
+
+    & > svg {
+      height: 14px;
+      width: 14px;
+      transform: translateY(-0.25px);
+    }
+
+    &:first-child > svg {
+      height: 16px;
+      width: 16px;
+    }
+
+    &:last-child > svg {
+      height: 16px;
+      width: 16px;
+    }
   }
 }
