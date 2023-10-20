@@ -10,26 +10,25 @@
 
   & > .page,
   & > .step {
-    height: 45px;
+    height: 48px;
+    width: 48px;
     border: none;
-    line-height: 16px;
+    line-height: 49px;
     font-size: 16px;
     font-family: Roboto Medium, $fonts_default;
     color: #9a9a9a;
     background: transparent;
-    transition: 0.2s color ease-in-out;
+    transition: 0.1s color ease-in-out;
     cursor: pointer;
 
     &:hover {
       background-color: rgba(0,0,0,0.05);
-      transition: 0.2s color ease-in-out;
+      transition: 0.1s color ease-in-out;
       color: #1f95cc;
     }
   }
 
   & > .page {
-    width: 45px;
-
     &--active {
       color: #1f95cc;
     }
@@ -39,20 +38,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
 
     &:first-child {
-      margin-left: 15px;
+      width: 55px;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
     }
 
     &:last-child {
-      margin-right: 15px;
+      width: 55px;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
     }
 
     & > svg {
       height: 14px;
       width: 14px;
-      transform: translateY(-0.25px);
     }
 
     &:first-child > svg {
@@ -63,6 +64,21 @@
     &:last-child > svg {
       height: 16px;
       width: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .pagination {
+    justify-content: center;
+    width: 100%;
+
+    & > .page:not(.page--active)  {
+      display: none;
+    }
+
+    & > .step {
+      border-radius: 0!important;
     }
   }
 }
