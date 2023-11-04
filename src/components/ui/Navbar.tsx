@@ -14,7 +14,7 @@ export function Navbar(): ReactElement {
                 <img className="route__img" src={serversSVG}/>
                 <p className="route__text">SERVERS</p>
             </NavLink>
-            <NavLink className="route" to="/drivers">
+            <NavLink className="route" to="/drivers" end>
                 <img className="route__img" src={driversSVG}/>
                 <p className="route__text">DRIVERS</p>
             </NavLink>

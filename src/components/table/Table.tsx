@@ -1,16 +1,38 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useRef } from "react";
 import {nanoid} from "nanoid";
 import "./table.scss";
+import { useNavigate } from "react-router-dom";
 
 export function Table(props: ITable): ReactElement {
     const indexStart = getIndex(props.pagination)
     const data: Array<object> = props.data
     const type = props.type
 
+    const tableBodyRef = useRef<HTMLTableSectionElement>(null)
+    const navigate = useNavigate()
+
     function getIndex(pagination: IPaginationSB | undefined): number {
         if (!pagination || pagination.number === 0) return 1
         return pagination.size * pagination.number + 1
     }
+
+    function handleBodyRowClick(e: any): void {
+        const id: string | null = e.target.parentNode.getAttribute("data-id")
+
+        if (id === null) return
+
+        navigate("./" + id)
+    }
+
+    useEffect(() => {
+        if (type === "logs" || type === "driver" || type === "driverLaps") return
+
+        tableBodyRef.current?.addEventListener('click', handleBodyRowClick)
+
+        return () => {
+            tableBodyRef.current?.removeEventListener('click', handleBodyRowClick)
+        }
+    }, [])
 
     return (
         <table className={`Table Table--${type}`}>
@@ -22,7 +44,7 @@ export function Table(props: ITable): ReactElement {
                     ))}
                 </tr>
             </thead>
-            <tbody className="body">{
+            <tbody className="body" ref={tableBodyRef}>{
                 data.map((obj: any, i) => (
                     <tr className="body__row" key={nanoid()} data-id={obj?.id}>
                         <td className={`body__row__item #`} key={nanoid()} data-label="#">{indexStart+i}</td>{

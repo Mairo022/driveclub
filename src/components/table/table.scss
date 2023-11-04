@@ -159,6 +159,70 @@
   }
 }
 
+.Table:not(.Table--logs, .Table--driver) {
+  .body__row {
+    cursor: pointer;
+
+    &:hover {
+      background-color: #F2F2F2;
+    }
+  }
+}
+
+.Table--driver {
+  .header__row__title,
+  .body__row__item {
+    &.\# {
+      display: none;
+    }
+
+    &.money {
+      width: 90px;
+    }
+
+    &.wins,
+    &.poles,
+    &.podiums,
+    &.crashes {
+      width: 80px;
+    }
+
+    &.driven {
+      width: 120px;
+    }
+
+    &.infractions {
+      width: 110px;
+    }
+
+    &.crashes\/100km {
+      width: 130px;
+    }
+
+    &.infractions\/100km {
+      width: 170px;
+    }
+  }
+}
+
+.Table--driverLaps {
+  .header__row__title,
+  .body__row__item {
+    &.\# {
+      display: none;
+    }
+
+    &.date {
+      width: 140px;
+    }
+
+    &.tc,
+    &.abs {
+      width: 50px;
+    }
+  }
+}
+
 @mixin table-responsive($class-name, $max-width) {
   @media screen and (max-width: #{$max-width}) {
     .#{$class-name} {
@@ -211,3 +275,5 @@
 @include table-responsive('Table--online', 740px);
 @include table-responsive('Table--drivers', 1250px);
 @include table-responsive('Table--stats', 850px);
+@include table-responsive('Table--driver', 1170px);
+@include table-responsive('Table--driverLaps', 1170px);

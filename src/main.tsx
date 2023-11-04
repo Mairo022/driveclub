@@ -9,6 +9,7 @@ import {Drivers} from "./pages/drivers/Drivers";
 import {Stats} from "./pages/stats/Stats";
 import {Logs} from "./pages/logs/Logs";
 import {Sessions} from "./pages/sessions/Sessions";
+import {Driver} from "./pages/driver/Driver";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
                 path: "/drivers",
                 Component: Drivers,
                 errorElement: <h2>Error loading drivers</h2>,
+            },
+            {
+                path: "/drivers/:id",
+                Component: Driver,
+                errorElement: <h2>Error loading driver</h2>,
             },
             {
                 path: "/stats",

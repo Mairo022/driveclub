@@ -1,0 +1,60 @@
+.driver {
+  position: relative;
+  padding: 40px 20px;
+
+  & > .back {
+    position: absolute;
+    top: 34px;
+    display: flex;
+    place-content: center;
+    height: 40px;
+    width: 50px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+
+    & > svg {
+      transform: translate(0.2px, 2.4px);
+      height: 32px;
+      width: 30px;
+    }
+
+    & > svg > path {
+      transition: 0.1s fill ease-in-out;
+    }
+
+    &:hover > svg > path {
+      fill: #1f95cc;
+      transition: 0.1s fill ease-in-out;
+    }
+  }
+
+  & > .info {
+    width: fit-content;
+    margin: 0 auto;
+
+    .info__name {
+      padding: 0 0 20px;
+      text-align: center;
+    }
+
+    .info__details {
+      width: min-content;
+    }
+  }
+
+  & > .hotlaps {
+    margin: 60px auto;
+    max-width: 1600px;
+  }
+}
+
+@media screen and (max-width: 1170px) {
+  .driver {
+    & > .info {
+      .info__details {
+        width: auto;
+      }
+    }
+  }
+}
