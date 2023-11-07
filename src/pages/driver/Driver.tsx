@@ -69,6 +69,7 @@ export function Driver(): ReactElement {
                 </div>
             </div>
             <div className="hotlaps">
+                <h3 className="hotlaps__title">Laptimes</h3>
                 <Table data={driverLaps} type="driverLaps"/>
             </div></>
             }

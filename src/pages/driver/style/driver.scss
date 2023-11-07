@@ -4,9 +4,11 @@
 
   & > .back {
     position: absolute;
-    top: 34px;
+    top: 30px;
+    left: 10px;
     display: flex;
-    place-content: center;
+    justify-content: center;
+    align-items: center;
     height: 40px;
     width: 50px;
     cursor: pointer;
@@ -15,8 +17,8 @@
 
     & > svg {
       transform: translate(0.2px, 2.4px);
-      height: 32px;
-      width: 30px;
+      height: 30px;
+      width: 28px;
     }
 
     & > svg > path {
@@ -34,6 +36,7 @@
     margin: 0 auto;
 
     .info__name {
+      font-size: 1.55em;
       padding: 0 0 20px;
       text-align: center;
     }
@@ -46,6 +49,11 @@
   & > .hotlaps {
     margin: 60px auto;
     max-width: 1600px;
+
+    .hotlaps__title {
+      margin-bottom: 10px;
+      margin-left: 2px;
+    }
   }
 }
 
@@ -54,6 +62,16 @@
     & > .info {
       .info__details {
         width: auto;
+      }
+    }
+
+    & > .hotlaps {
+      margin: 10px auto 0;
+
+      .hotlaps__title {
+        margin-left: 0;
+        margin-bottom: 30px;
+        text-align: center;
       }
     }
   }
