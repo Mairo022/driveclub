@@ -38,6 +38,12 @@ body {
   background-color: #E5E6DD;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
 a {
   text-decoration: none;
 }
