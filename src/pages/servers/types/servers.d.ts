@@ -4,6 +4,7 @@ interface IServer {
     online: number
     spots: number
     session: string
+    cars: string[]
     drivers: {
         driver: string
         car: string

@@ -2,30 +2,57 @@ $responsiveWidth: 500px;
 
 .navbar {
   display: flex;
-  align-content: end;
-  align-items: end;
+  align-self: center;
   justify-content: center;
-  flex-wrap: nowrap;
-  transform: translateY(1px);
+  width: 100%;
+  max-width: 1000px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background-color: rgba(245, 245, 245, 0.85);
+  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+  clip-path: inset(0 -4px -4px -4px);
 
   .route {
-    flex: 0 1 200px;
     position: relative;
-    color: #8f8f8f;
-    display: block;
-    font-size: 14px;
-    margin: 0 1px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     padding: 15px 0;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
     text-align: center;
-    z-index: 1;
-    clip-path: inset(-1px -3px 0 -3px);
+    font-size: 14px;
+    color: #8f8f8f;
+    clip-path: inset(0 -3px -3px -3px);
 
     &.active {
+      z-index: 5;
       color: #666666;
-      background-color: #F5F5F5;
-      box-shadow: 0 -3px 3px #bababa;
+      background-color: #FAFAFA;
+      box-shadow: 0 0 4px #bababa;
+      clip-path: inset(0 -4px 0 -4px);
+    }
+
+    &:hover {
+      color: #666666;
+      background-color: #FAFAFA;
+      transition: 0.5s background-color ease-in-out;
+    }
+
+    &:first-child {
+      border-bottom-left-radius: 3px;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 3px;
+    }
+
+    &:first-child.active,
+    &:first-child:not(.active)::before {
+      clip-path: inset(0 -4px 0 0);
+    }
+
+    &:last-child.active,
+    &:last-child:not(.active)::before {
+      clip-path: inset(0 0 0 -4px);
     }
 
     &:not(.active)::before {
@@ -39,20 +66,13 @@ $responsiveWidth: 500px;
       transition: transform 250ms ease-in-out;
       transform: scaleY(0);
       transform-origin: bottom;
-      box-shadow: 0 -3px 3px #bababa;
-      background-color: #F5F5F5;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
+      box-shadow: 0 0 4px #bababa;
+      background-color: #FAFAFA;
+      clip-path: inset(0 -4px 0 -4px);
     }
 
     &:hover::before {
       transform: scaleY(1);
-    }
-
-    &:hover {
-      color: #666666;
-      background-color: #F5F5F5;
-      transition: 0.5s background-color ease-in-out;
     }
 
     &__img {
@@ -65,11 +85,17 @@ $responsiveWidth: 500px;
 @media screen and (max-width: $responsiveWidth) {
   .navbar {
     flex-wrap: wrap;
+    border-radius: 0;
 
     .route {
-      clip-path: inset(0);
       flex-basis: 100%;
-      border-radius: 3px;
+      border-radius: 0;
+
+      &.active {
+        border-radius: 0;
+        box-shadow: 0 0 3px #bababa;
+        clip-path: none!important;
+      }
 
       &:hover {
         transition: 0s background-color ease-in-out;

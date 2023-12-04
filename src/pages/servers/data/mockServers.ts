@@ -3,6 +3,16 @@ export const servers: IServer[] = [
         name: "Driving Club Practice",
         track: "Nordschleife",
         session: "Practice",
+        cars: [
+            "Ferrari 599xx",
+            "Ford Sierra Cosworth RS500 GrA 1990",
+            "Pagani Zonda R",
+            "BMW E34 M5",
+            "Koenigsegg Agera RS Phoenix",
+            "Koenigsegg Agera RS",
+            "Lamborghini Aventador LP 770-4 SVJ Roadster",
+            "Rolls-Royce Phantom"
+        ],
         drivers: [
             {
                 driver: "Existenz",
@@ -30,6 +40,11 @@ export const servers: IServer[] = [
         name: "Driving Club Racing",
         track: "Nordschleife",
         session: "Qualify",
+        cars: [
+            "Ferrari 599xx",
+            "Pagani Zonda R",
+            "BMW Z4 GT3",
+        ],
         drivers: [
             {
                 driver: "Sheen",
@@ -64,11 +79,29 @@ export const servers: IServer[] = [
             {
                 driver: "Ascodo",
                 car: "Ferrari 599xx",
+                best: "6:30:007",
+                last: "6.33.225"
+            },
+            {
+                driver: "cat991",
+                car: "Ferrari 599xx",
+                best: "6:31:700",
+                last: "6.41.118"
+            },
+            {
+                driver: "Senna",
+                car: "Ferrari 599xx",
                 best: "6:27:777",
-                last: "6.23.338"
+                last: "6.28.355"
+            },
+            {
+                driver: "William",
+                car: "Ferrari 599xx",
+                best: "6:24:777",
+                last: "6.27.338"
             }
         ],
-        online: 5,
+        online: 9,
         spots: 24
     }
 ]

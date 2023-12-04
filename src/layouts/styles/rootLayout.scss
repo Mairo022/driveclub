@@ -8,19 +8,9 @@
 
   & > .page {
     flex-grow: 1;
+    max-width: 1600px;
+    margin: 0 auto;
     padding: 40px;
     border-radius: 2px;
-    background-color: #F5F5F5;
-    box-shadow: 0 0 3px #bababa;
-  }
-}
-
-@media screen and (max-width: $responsiveWidth) {
-  .container {
-    padding: 0;
-
-    & > .page {
-      flex-basis: 100%;
-    }
   }
 }

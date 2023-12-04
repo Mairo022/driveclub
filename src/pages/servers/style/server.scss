@@ -3,29 +3,46 @@
 .server {
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto 20px;
   padding: 20px 30px;
-  margin-bottom: 20px;
-  border-radius: 10px;
+  border-radius: 3px;
   box-shadow: 0 0 3px #CCC;
-  background: white;
+  background-color: rgba(245, 245, 245, 0.85);
 
-  &__header {
-    display: flex;
-    align-items: center;
-
-    &__title {
-      font-family: Roboto Bold, $fonts_default;
-    }
+  &__title {
+    font-family: Roboto Medium, $fonts_default;
   }
 
   &__session {
     margin-top: 5px;
+    font-family: Roboto Medium, $fonts_default;
   }
 
   &__online {
-    margin-top: 5px;
-    font-size: 15px;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  &__cars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 10px;
+    justify-content: center;
+    margin-top: 12px;
+    padding-bottom: 5px;
+
+    &__car {
+      padding: 4px 15px;
+      border-radius: 11px;
+      font-family: Roboto Medium, $fonts_default;
+      font-size: 14px;
+      box-shadow: 0 0 1px #bababa;
+      background-color: #DF8B8B;
+      color: #F8F8F6;
+    }
   }
 
   &__join {
@@ -33,11 +50,13 @@
     right: 30px;
     padding-top: 6.5px;
     font-family: Roboto Bold, $fonts_default;
-    font-size: 13px;
-    color: #23A7DC;
+    font-size: 14px;
+    color: #25C2A0;
+    text-decoration: underline;
+    text-underline-offset: 4px;
 
     &:hover {
-      border-bottom: 1px solid #23A7DC;
+      color: #2adbb5;
     }
   }
 
@@ -60,9 +79,9 @@
     &__arrow {
       position: absolute;
       width: 16px;
-      color: #1b82b3;
       transform: translateY(1.5px);
       transition: 0.2s ease-in-out;
+      color: #262326;
 
       &.open {
         transform: scaleY(-1);
@@ -79,15 +98,49 @@
     width: fit-content;
     max-height: 0;
     height: max-content;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: hidden;
     transition: max-height 0.2s ease-out, margin-top 0.2s ease-in;
 
     &.open {
       padding: 2px;
       margin-top: 15px;
-      max-height: 300px;
+      max-height: 400px;
       transition: max-height 0.2s ease-out, margin-top 0s ease;
+    }
+
+    &__description {
+      margin: 0 0 8px 2px;
+    }
+
+    &__online {
+      border-radius: 4px;
+      box-shadow: 0 0 3px #bababa;
+      height: 100%;
+      max-height: 295px;
+      overflow: auto;
+    }
+
+    &__results {
+      display: block;
+      width: fit-content;
+      margin: 20px auto 0;
+      font-size: 15px;
+      color: #25C2A0;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+
+      &:hover {
+        color: #2adbb5;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .server {
+    &__join {
+      display: none;
     }
   }
 }
