@@ -8,13 +8,14 @@ export function Sessions(): ReactElement {
             <ul>{
                 sessions.map((session, i) => (
                     <li className="session" key={i}>
-                        <h3 className="session__details">{session.track} ({session.session})</h3>
+                        <p className="session__title">
+                            {session.track} ({session.session}, Drivers: {session.drivers})
+                        </p>
                         <div className="session__results">
                             <p>1. {session.first}</p>
                             <p>2. {session.second}</p>
                             <p>3. {session.third}</p>
                         </div>
-                        <p className="session__total-drivers">Total drivers: {session.drivers}</p>
                         <p className="session__date">{session.date}</p>
                     </li>
                 ))}

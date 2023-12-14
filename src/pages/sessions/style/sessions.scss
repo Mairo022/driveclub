@@ -1,43 +1,47 @@
+@import "src/assets/variables";
+
 .sessions {
   ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px 20px;
-
-    .session {
-      padding: 20px 30px;
-      flex: 1 1;
-      min-width: 400px;
-      max-width: 600px;
+    & .session {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 auto 10px;
+      padding: 12px 20px;
+      max-width: 1200px;
       border-radius: 10px;
-      background-color: white;
-      text-align: center;
+      background-color: rgba(250, 250, 250, .98);
+      box-shadow: 0 0 4px #bababa;
 
-      &__details {
-        text-decoration: #848484 underline;
-        padding-bottom: 15px;
+      &:hover {
+        background-color: rgba(240, 240, 240, 0.9);
+        cursor: pointer;
+      }
+
+      &__title {
+        font-family: 'Roboto Medium', $fonts_default;
       }
 
       &__results {
         display: flex;
-        gap: 0 15px;
         justify-content: center;
-        font-family: Roboto Medium;
-        font-size: 15px;
+        flex-wrap: wrap;
+        gap: 5px 20px;
       }
 
       &__date {
-        padding-top: 15px;
+        flex-shrink: 0;
       }
     }
   }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 750px) {
   .sessions {
     .session {
-      min-width: auto;
+      flex-direction: column;
     }
   }
 }
