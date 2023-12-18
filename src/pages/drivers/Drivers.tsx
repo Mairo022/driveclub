@@ -12,17 +12,17 @@ import { hasURLParams } from "../../utils/url";
 
 export function Drivers(): ReactElement {
     const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true)
-    const [status, setStatus] = useState<string>(FETCH_STATUS.IDLE)
-    const [error, setError] = useState<string | null>(null)
     const [drivers, setDrivers] = useState<IDriver[]>([])
     const [pagination, setPagination] = useState<IPaginationSB | undefined>()
 
     const location = useLocation()
     const navigate = useNavigate()
 
+    const [status, setStatus] = useState<string>(FETCH_STATUS.IDLE)
     const isLoading = status === FETCH_STATUS.LOADING
     const isSuccess = status === FETCH_STATUS.SUCCESS
     const isError = status === FETCH_STATUS.ERROR
+    const [error, setError] = useState<string | null>(null)
 
     const [filter, setFilter] = useState<IPageRequest>({
         sort: "money",
