@@ -1,8 +1,10 @@
+import {NavLink} from "react-router-dom";
+
 export function Session(props: ISessionProps) {
     const {session} = props
 
     return (
-        <>
+        <NavLink className="session__link" to={"./" + session.sessionID}>
             <p className="session__title">
                 {session.track} ({session.type}, Drivers: {session.totalDrivers})
             </p>
@@ -17,6 +19,6 @@ export function Session(props: ISessionProps) {
                 <p>DNF</p>}
             </div>
             <p className="session__date">{session.date}</p>
-        </>
+        </NavLink>
     )
 }

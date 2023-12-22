@@ -1,0 +1,3 @@
+interface IDriverLapsProps {
+    isOpen: boolean
+}

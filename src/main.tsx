@@ -10,6 +10,7 @@ import {Stats} from "./pages/stats/Stats";
 import {Logs} from "./pages/logs/Logs";
 import {Sessions} from "./pages/sessions/Sessions";
 import {Driver} from "./pages/driver/Driver";
+import {Session} from "./pages/session/Session";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
                 path: "/sessions",
                 Component: Sessions,
                 errorElement: <h2>Error loading sessions</h2>,
+            },
+            {
+                path: "/sessions/:id",
+                Component: Session,
+                errorElement: <h2>Error loading session</h2>,
             },
             {
                 path: "*",
