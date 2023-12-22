@@ -19,8 +19,8 @@ export function Server(props: IServerProps) {
             <h2 className="server__title">{server.name}</h2>
             <p className="server__session">{server.track} ({server.session})</p>
             <p className="server__online">{server.online}/{server.spots}</p>
-            <div className="server__cars">{server.cars.map(car => (
-                <span className="server__cars__car">{car}</span>))}
+            <div className="server__cars">{server.cars.map((car, i) => (
+                <span className="server__cars__car" key={i}>{car}</span>))}
             </div>
             <div className={`server__activity${openClassName}`}>
                 <p className="server__activity__description">Currently online</p>
