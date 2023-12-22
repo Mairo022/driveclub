@@ -1,13 +1,20 @@
-interface ISession {
-    id: string
-    type: string
+interface ISessionProps {
+    session: ISessionOverview
+}
+
+interface ISessionOverview extends ISessionDetails {
+    sessionID: string
     date: string
-    fuel_rate: number | null
-    tyre_wear_rate: number | null
-    air_temp: number | null
-    road_temp: number | null
     track: string
-    penalties: boolean | null
-    duration: string | null
-    server: string
+    type: string
+    totalDrivers: number
+}
+
+interface ISessionDetails {
+    first: undefined | string
+    firstID: undefined | string
+    second: undefined | string
+    secondID: undefined | string
+    third: undefined | string
+    thirdID: undefined | string
 }

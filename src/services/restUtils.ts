@@ -5,7 +5,7 @@ export function buildRequestParams(filter: IPageRequest): string {
 
     if (page != null) paramsMap.set("page", String(page))
     if (size != null) paramsMap.set("size", String(size))
-    if (sort != null) paramsMap.set("sort", sort + ',' + direction ?? '')
+    if (sort != null && direction != null) paramsMap.set("sort", sort + ',' + direction ?? '')
 
     paramsMap.forEach((value, key) => {
         if (params === "")

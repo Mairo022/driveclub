@@ -1,6 +1,6 @@
 import {ReactElement, useEffect, useState} from "react";
 import "./style/sessions.scss";
-import {getSessions} from "../../services/sessionsService";
+import {getSessionsOverviews} from "../../services/sessionsService";
 import {FETCH_STATUS} from "../../data/constants";
 import {Pagination} from "../../components/pagination/Pagination";
 import {Session} from "./Session";
@@ -9,19 +9,18 @@ import {useNavigate} from "react-router-dom";
 import {AxiosResponse} from "axios";
 import {hasURLParams} from "../../utils/url";
 import {hasAllKeys, isShallowEqualObject} from "../../utils/compareObjects";
+import {fullDatetimeFormat} from "../../utils/dateFormatter";
 
 export function Sessions(): ReactElement {
     const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true)
     const [pagination, setPagination] = useState<IPaginationSB | undefined>()
-    const [sessions, setSessions] = useState<ISession[]>([])
+    const [sessions, setSessions] = useState<ISessionOverview[]>([])
 
     const navigate = useNavigate()
 
     const [filter, setFilter] = useState<IPageRequest>({
-        sort: "date",
-        direction: "desc",
         page: 0,
-        size: 20
+        size: 14
     })
 
     const [status, setStatus] = useState<string>(FETCH_STATUS.IDLE)
@@ -34,11 +33,47 @@ export function Sessions(): ReactElement {
         try {
             setStatus(FETCH_STATUS.LOADING)
 
-            const response: AxiosResponse = await getSessions(filter)
-            const sessions: ISession[] = response.data.content
+            const response: AxiosResponse = await getSessionsOverviews(filter)
+            const sessions: any[] = response.data.content
 
             if (sessions && sessions.length > 0) {
-                setSessions(sessions)
+                const sessionsOverviews: ISessionOverview[] = sessions.map(session => {
+                    const detailsArr = session[5]?.split(",")
+                    const details: ISessionDetails = {
+                        first: undefined,
+                        firstID: undefined,
+                        second: undefined,
+                        secondID: undefined,
+                        third: undefined,
+                        thirdID: undefined,
+                    }
+
+                    if (detailsArr) {
+                        if (detailsArr.length >= 3) {
+                            details["first"] = detailsArr[2]
+                            details["firstID"] = detailsArr[0]
+                        }
+                        if (detailsArr.length >= 6) {
+                            details["second"] = detailsArr[5]
+                            details["secondID"] = detailsArr[3]
+                        }
+                        if (detailsArr.length === 9) {
+                            details["third"] = detailsArr[8]
+                            details["thirdID"] = detailsArr[6]
+                        }
+                    }
+
+                    return {
+                        sessionID: session[0],
+                        type: session[1],
+                        date: fullDatetimeFormat(session[2]),
+                        track: session[3],
+                        totalDrivers: session[4],
+                        ...details
+                    }
+                })
+
+                setSessions(sessionsOverviews)
                 setPagination({
                     size: response.data.size,
                     number: response.data.number,

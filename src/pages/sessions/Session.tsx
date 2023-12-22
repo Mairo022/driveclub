@@ -1,27 +1,22 @@
-export function Session(props: any) {
+export function Session(props: ISessionProps) {
     const {session} = props
 
-    function formatDate(date: string): string {
-        return new Intl.DateTimeFormat('en-GB', {
-            year: "numeric",
-            day: "numeric",
-            month: "long",
-            hour: "numeric",
-            minute: "numeric",
-            hour12: false,
-        }).format(new Date(date)).replace(" at", "")
-    }
     return (
         <>
             <p className="session__title">
-                {session.track} ({session.type}, Drivers: {session.drivers})
+                {session.track} ({session.type}, Drivers: {session.totalDrivers})
             </p>
             <div className="session__results">
-                <p>1. {session.first}</p>
-                <p>2. {session.second}</p>
-                <p>3. {session.third}</p>
+                {session.firstID &&
+                <p>1. {session.first}</p>}
+                {session.secondID &&
+                <p>2. {session.second}</p>}
+                {session.thirdID &&
+                <p>3. {session.third}</p>}
+                {!session.firstID &&
+                <p>DNF</p>}
             </div>
-            <p className="session__date">{formatDate(session.date)}</p>
+            <p className="session__date">{session.date}</p>
         </>
     )
 }
