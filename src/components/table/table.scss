@@ -223,6 +223,19 @@
   }
 }
 
+.Table--sessionDetails {
+  .header__row__title,
+  .body__row__item {
+    &.\# {
+      display: none;
+    }
+
+    &.rank {
+      width: 60px;
+    }
+  }
+}
+
 @mixin table-responsive($class-name, $max-width) {
   @media screen and (max-width: #{$max-width}) {
     .#{$class-name} {
@@ -277,3 +290,4 @@
 @include table-responsive('Table--stats', 850px);
 @include table-responsive('Table--driver', 1170px);
 @include table-responsive('Table--driverLaps', 1170px);
+@include table-responsive('Table--sessionDetails', 740px);

@@ -4,4 +4,4 @@ interface ITable {
     pagination?: IPaginationSB
 }
 
-type tableType = "online" | "drivers" | "stats" | "logs" | "driver" | "driverLaps" | "sessionLaps"
+type tableType = "online" | "drivers" | "stats" | "logs" | "driver" | "driverLaps" | "sessionLaps" | "sessionDetails"

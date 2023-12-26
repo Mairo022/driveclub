@@ -13,8 +13,8 @@ interface IPaginationSB {
 }
 
 interface IPageRequest {
-    page: number;
-    size: number;
+    page?: number;
+    size?: number;
     sort?: string;
     direction?: ISortDirection;
 }

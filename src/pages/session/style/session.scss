@@ -3,7 +3,7 @@ article.session {
   margin: 0 auto 20px;
   color: #262326;;
 
-  & .details {
+  & .info {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -50,9 +50,7 @@ article.session {
     }
   }
 
-  & .drivers {
-    margin-top: 10px;
-    padding: 20px 30px;
-    background: red;
+  & .details {
+    margin-top: 20px;
   }
 }
