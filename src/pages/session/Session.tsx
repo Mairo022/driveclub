@@ -6,8 +6,11 @@ import {useLocation} from "react-router-dom";
 import {getSessionDetails, getSessionInfo} from "../../services/sessionsService";
 import {fullDatetimeFormat} from "../../utils/dateFormatter";
 import axios from "axios";
+import {DriverLaps} from "./DriverLaps";
 
 export function Session(): ReactElement {
+    const [isDriverLapsOpen, setIsDriverLapsOpen] = useState<boolean>(false)
+
     const [status, setStatus] = useState<string>(FETCH_STATUS.IDLE)
     const isLoading = status === FETCH_STATUS.LOADING
     const isSuccess = status === FETCH_STATUS.SUCCESS
@@ -74,6 +77,26 @@ export function Session(): ReactElement {
         return [{}]
     }
 
+    function handleBodyClick(e: any): void {
+        const className = e.target.className
+        if (!className.includes("row") && !className.includes("driver") && !className.includes("close"))
+            setIsDriverLapsOpen(false)
+    }
+
+    function handleTableBodyRowClick(e: any): void {
+        setIsDriverLapsOpen(true)
+    }
+
+    useEffect(() => {
+        if (isDriverLapsOpen)
+            document.addEventListener("click", handleBodyClick)
+
+        return () => {
+            if (isDriverLapsOpen)
+                document.removeEventListener("click", handleBodyClick)
+        }
+    }, [isDriverLapsOpen])
+
     useEffect(() => {
         fetchSessionDetails()
     }, [])
@@ -120,8 +143,9 @@ export function Session(): ReactElement {
                     </div>
                 </div>
                 <div className="details">{
-                    <Table data={sessionDetails} type="sessionDetails"/>}
+                    <Table data={sessionDetails} type="sessionDetails" handleBodyRowClick={handleTableBodyRowClick}/>}
                 </div>
+                <DriverLaps isOpen={isDriverLapsOpen} setIsOpen={setIsDriverLapsOpen}/>
             </>}
             {isError && <span className="error">{error}</span>}
             {isLoading && <span className="loading">Loading...</span>}

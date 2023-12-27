@@ -7,6 +7,7 @@ export function Table(props: ITable): ReactElement {
     const indexStart = getIndex(props.pagination)
     const data: Array<object> = props.data
     const type = props.type
+    const handleBodyRowClick = props.handleBodyRowClick ? props.handleBodyRowClick : handleBodyRowClickDefault
 
     const tableBodyRef = useRef<HTMLTableSectionElement>(null)
     const navigate = useNavigate()
@@ -16,7 +17,7 @@ export function Table(props: ITable): ReactElement {
         return pagination.size * pagination.number + 1
     }
 
-    function handleBodyRowClick(e: any): void {
+    function handleBodyRowClickDefault(e: any): void {
         const id: string | null = e.target.parentNode.getAttribute("data-id")
 
         if (id === null) return

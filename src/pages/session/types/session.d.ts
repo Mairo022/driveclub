@@ -1,7 +1,3 @@
-interface IDriverLapsProps {
-    isOpen: boolean
-}
-
 interface ISessionInfo {
     air_temp: number
     damage: number
