@@ -53,7 +53,7 @@ export function Session(): ReactElement {
     function sessionDetailsOrganise(sessionDetails: ISessionDetails[], type: string): ISessionDetailsTable[] | {}[] {
         if (type === "Race") {
             return sessionDetails.map(session => ({
-                "id": sessionID,
+                "id": session.driverID,
                 "rank": session.rank,
                 "driver": session.name,
                 "car": session.car,
@@ -65,7 +65,7 @@ export function Session(): ReactElement {
 
         if (type === "Qualify" || type === "Practice") {
             return sessionDetails.map(session => ({
-                "id": sessionID,
+                "id": session.driverID,
                 "rank": session.rank,
                 "driver": session.name,
                 "car": session.car,

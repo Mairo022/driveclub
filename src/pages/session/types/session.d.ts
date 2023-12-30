@@ -17,7 +17,8 @@ interface ISessionDetails {
     car: string
     fastestLap: string
     gapToFirst: string
-    id: number
+    id: string
+    driverID: number
     name: string
     rank: string
     sessionID: string
