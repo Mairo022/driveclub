@@ -1,4 +1,5 @@
-import axios, { AxiosPromise } from "axios";
+import axios from "./axiosConfig"
+import { AxiosPromise } from "axios";
 import { buildRequestParams } from "./restUtils";
 
 const apiURL: string = import.meta.env.VITE_API_URL + "/drivers"
