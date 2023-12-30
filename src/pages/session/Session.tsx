@@ -10,6 +10,7 @@ import {DriverLaps} from "./DriverLaps";
 
 export function Session(): ReactElement {
     const [isDriverLapsOpen, setIsDriverLapsOpen] = useState<boolean>(false)
+    const [selectedDriverID, setSelectedDriverID] = useState<string>()
 
     const [status, setStatus] = useState<string>(FETCH_STATUS.IDLE)
     const isLoading = status === FETCH_STATUS.LOADING
@@ -84,6 +85,9 @@ export function Session(): ReactElement {
     }
 
     function handleTableBodyRowClick(e: any): void {
+        const id: string = e.target.parentNode.getAttribute("data-id")
+
+        setSelectedDriverID(id)
         setIsDriverLapsOpen(true)
     }
 
@@ -145,7 +149,7 @@ export function Session(): ReactElement {
                 <div className="details">{
                     <Table data={sessionDetails} type="sessionDetails" handleBodyRowClick={handleTableBodyRowClick}/>}
                 </div>
-                <DriverLaps isOpen={isDriverLapsOpen} setIsOpen={setIsDriverLapsOpen}/>
+                <DriverLaps driverID={selectedDriverID} sessionID={sessionID} isOpen={isDriverLapsOpen} setIsOpen={setIsDriverLapsOpen}/>
             </>}
             {isError && <span className="error">{error}</span>}
             {isLoading && <span className="loading">Loading...</span>}
