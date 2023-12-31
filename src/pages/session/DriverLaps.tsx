@@ -4,11 +4,10 @@ import "./style/driverLaps.scss"
 import {IDriverLaps, IDriverLapsProps, IDriverLapsTable} from "./types/driverLaps";
 import {FETCH_STATUS} from "../../data/constants";
 import {getDriverSessionLaps} from "../../services/lapsService";
+import {useNavigate} from "react-router-dom";
 
 export function DriverLaps(props: IDriverLapsProps): ReactElement {
     const {isOpen, setIsOpen, sessionID, driverID} = props
-
-    const formattedName = (name: string): string => name.charAt(name.length-1) === "s" ? `${name}'` : `${name}'s`
 
     const [driver, setDriver] = useState<string>("")
     const [laps, setLaps] = useState<IDriverLapsTable[] | object[]>([{}])
@@ -18,6 +17,10 @@ export function DriverLaps(props: IDriverLapsProps): ReactElement {
     const isSuccess = status === FETCH_STATUS.SUCCESS
     const isError = status === FETCH_STATUS.ERROR
     const [error, setError] = useState<string | null>(null)
+
+    const navigate = useNavigate()
+
+    const formattedName = (name: string): string => name.charAt(name.length-1) === "s" ? `${name}'` : `${name}'s`
 
     async function fetchLaps(): Promise<void> {
         if (!driverID) {
@@ -54,6 +57,13 @@ export function DriverLaps(props: IDriverLapsProps): ReactElement {
         }))
     }
 
+    function handleTableBodyRowClick(e: any): void {
+        const id: string = e.target.parentNode.getAttribute("data-id")
+
+        if (e.button === 0) navigate("/lap/" + id)
+        if (e.button === 1) window.open("/lap/" + id, "_blank")
+    }
+
     useEffect(() => {
         if (isOpen)
             fetchLaps()
@@ -67,7 +77,7 @@ export function DriverLaps(props: IDriverLapsProps): ReactElement {
                 <span className="close" onClick={() => {setIsOpen(false)}}>Close</span>
                 <h3 className="driver">{formattedName(driver)} laps</h3>
                 <div className="laps">
-                    <Table data={laps} type={"sessionLaps"}/>
+                    <Table data={laps} type={"sessionLaps"} handleBodyRowClick={handleTableBodyRowClick}/>
                 </div>
             </>}
             {isError && <span className="error">{error}</span>}
