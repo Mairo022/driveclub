@@ -22,16 +22,17 @@ export function Table(props: ITable): ReactElement {
 
         if (id === null) return
 
-        navigate("./" + id)
+        if (e.button === 0) navigate("./" + id)
+        if (e.button === 1) window.open(window.location + "/" + id, "_blank")
     }
 
     useEffect(() => {
         if (type === "logs" || type === "driver" || type === "driverLaps") return
 
-        tableBodyRef.current?.addEventListener('click', handleBodyRowClick)
+        tableBodyRef.current?.addEventListener('mouseup', handleBodyRowClick)
 
         return () => {
-            tableBodyRef.current?.removeEventListener('click', handleBodyRowClick)
+            tableBodyRef.current?.removeEventListener('mouseup', handleBodyRowClick)
         }
     }, [])
 

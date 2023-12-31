@@ -87,8 +87,10 @@ export function Session(): ReactElement {
     function handleTableBodyRowClick(e: any): void {
         const id: string = e.target.parentNode.getAttribute("data-id")
 
-        setSelectedDriverID(id)
-        setIsDriverLapsOpen(true)
+        if (e.button === 0) {
+            setSelectedDriverID(id)
+            setIsDriverLapsOpen(true)
+        }
     }
 
     useEffect(() => {
