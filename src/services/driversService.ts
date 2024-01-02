@@ -11,7 +11,7 @@ export function getDrivers(filter: IPageRequest): AxiosPromise<IPageResponse<IDr
     return axios.get(url)
 }
 
-export function getDriver(id: number): AxiosPromise<IDriver> {
+export function getDriver(id: string): AxiosPromise<IDriver> {
     const url = `${apiURL}/getDriver?id=${id}`
     return axios.get(url)
 }

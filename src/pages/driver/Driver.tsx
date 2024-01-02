@@ -39,7 +39,7 @@ export function Driver(): ReactElement {
             setStatus(FETCH_STATUS.LOADING)
 
             const id: string = location.pathname.split("/")[2]
-            const response: AxiosResponse = await getDriver(parseInt(id))
+            const response: AxiosResponse = await getDriver(id)
             const driver: IDriverServer = response.data
 
             setDriver(driver)
