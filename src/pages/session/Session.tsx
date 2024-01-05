@@ -1,22 +1,17 @@
 import {ReactElement, useEffect, useState} from "react";
-import {FETCH_STATUS} from "../../data/constants";
 import {Table} from "../../components/table/Table";
 import "./style/session.scss";
 import {useLocation} from "react-router-dom";
 import {getSessionDetails, getSessionInfo} from "../../services/sessionsService";
 import {fullDatetimeFormat} from "../../utils/dateFormatter";
-import axios from "axios";
 import {DriverLaps} from "./DriverLaps";
+import {useFetch} from "../../hooks/useFetch";
 
 export function Session(): ReactElement {
+    const [isDataReady, setIsDataReady] = useState<boolean>(false)
+
     const [isDriverLapsOpen, setIsDriverLapsOpen] = useState<boolean>(false)
     const [selectedDriverID, setSelectedDriverID] = useState<string>()
-
-    const [status, setStatus] = useState<string>(FETCH_STATUS.IDLE)
-    const isLoading = status === FETCH_STATUS.LOADING
-    const isSuccess = status === FETCH_STATUS.SUCCESS
-    const isError = status === FETCH_STATUS.ERROR
-    const [error, setError] = useState<string | null>(null)
 
     const [sessionInfo, setSessionInfo] = useState<ISessionInfo>()
     const [sessionDetails, setSessionDetails] = useState<ISessionDetailsTable[] | {}[]>([])
@@ -31,27 +26,18 @@ export function Session(): ReactElement {
         direction: "asc"
     })
 
-    async function fetchSessionDetails(): Promise<void> {
-        try {
-            setStatus(FETCH_STATUS.LOADING)
+    const {data, isLoading, isSuccess, isError, error} = useFetch([
+        {fn: getSessionInfo, params: [sessionID]},
+        {fn: getSessionDetails, params: [filter, sessionID]}
+    ])
 
-            const responses = await axios.all([getSessionInfo(sessionID), getSessionDetails(filter, sessionID)])
-
-            const sessionInfo: ISessionInfo = responses[0].data
-            const sessionDetails: ISessionDetails[] = responses[1].data
-
-            if (responses && sessionInfo && sessionDetails.length > 0) {
-                setSessionDetails(sessionDetailsOrganise(sessionDetails, sessionInfo.type))
-                setSessionInfo(sessionInfo)
-                setStatus(FETCH_STATUS.SUCCESS)
-            }
-        } catch (e: any) {
-            setStatus(FETCH_STATUS.ERROR)
-            setError(e?.message)
-        }
+    function handleFetchedData(data: Array<any>): void {
+        setSessionInfo(data[0])
+        setSessionDetails(organiseSessionDetails(data[1], data[0].type))
+        setIsDataReady(true)
     }
 
-    function sessionDetailsOrganise(sessionDetails: ISessionDetails[], type: string): ISessionDetailsTable[] | {}[] {
+    function organiseSessionDetails(sessionDetails: ISessionDetails[], type: string): ISessionDetailsTable[] | {}[] {
         if (type === "Race") {
             return sessionDetails.map(session => ({
                 "id": session.driverID,
@@ -104,12 +90,12 @@ export function Session(): ReactElement {
     }, [isDriverLapsOpen])
 
     useEffect(() => {
-        fetchSessionDetails()
-    }, [])
+        if (data) handleFetchedData(data)
+    }, [isSuccess])
 
     return (
         <article className="session">
-            {isSuccess && <>
+            {isSuccess && isDataReady && <>
                 <div className="info">
                     <header className="info__header">
                         <h3 className="info__header__track">{sessionInfo!.track} ({sessionInfo!.type})</h3>

@@ -2,27 +2,22 @@ import { ReactElement, useEffect, useState } from "react";
 import {Table} from "../../components/table/Table";
 import "./style/drivers.scss";
 import { getDrivers } from "../../services/driversService";
-import { FETCH_STATUS } from "../../data/constants";
-import { AxiosResponse } from "axios";
 import { Pagination } from "../../components/pagination/Pagination";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { buildRequestParams } from "../../services/restUtils";
 import { hasAllKeys, isShallowEqualObject } from "../../utils/compareObjects";
 import { hasURLParams } from "../../utils/url";
+import { useFetch } from "../../hooks/useFetch";
 
 export function Drivers(): ReactElement {
-    const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true)
+    const [isReadyToFetch, setIsReadyToFetch] = useState<boolean>(false)
+    const [isDataReady, setIsDataReady] = useState<boolean>(false)
+
     const [drivers, setDrivers] = useState<IDriver[]>([])
     const [pagination, setPagination] = useState<IPaginationSB | undefined>()
 
     const location = useLocation()
     const navigate = useNavigate()
-
-    const [status, setStatus] = useState<string>(FETCH_STATUS.IDLE)
-    const isLoading = status === FETCH_STATUS.LOADING
-    const isSuccess = status === FETCH_STATUS.SUCCESS
-    const isError = status === FETCH_STATUS.ERROR
-    const [error, setError] = useState<string | null>(null)
 
     const [filter, setFilter] = useState<IPageRequest>({
         sort: "money",
@@ -30,6 +25,22 @@ export function Drivers(): ReactElement {
         page: 0,
         size: 20
     })
+
+    const {data, isLoading, isSuccess, isError, error} = useFetch(getDrivers, [filter], isReadyToFetch)
+
+    function handleFetchedData(data: IPageResponse<IDriverServer[]>) {
+        const drivers = data.content
+
+        setDrivers(adjustFieldNames(drivers))
+        setPagination({
+            size: data.size,
+            number: data.number,
+            totalPages: data.totalPages,
+            totalElements: data.totalElements
+        })
+
+        setIsDataReady(true)
+    }
 
     function setFilterFromURLParams(): void {
         const search: string = location.search.slice(1)
@@ -83,29 +94,6 @@ export function Drivers(): ReactElement {
         }))
     }
 
-    async function fetchDrivers(): Promise<void> {
-        try {
-            setStatus(FETCH_STATUS.LOADING)
-
-            const response: AxiosResponse = await getDrivers(filter)
-            const drivers: IDriverServer[] = response.data.content
-
-            if (drivers && drivers.length > 0) {
-                setDrivers(adjustFieldNames(drivers))
-                setPagination({
-                    size: response.data.size,
-                    number: response.data.number,
-                    totalPages: response.data.totalPages,
-                    totalElements: response.data.totalElements
-                })
-                setStatus(FETCH_STATUS.SUCCESS)
-            }
-        } catch (e: any) {
-            setStatus(FETCH_STATUS.ERROR)
-            setError(e?.message)
-        }
-    }
-
     function handlePaging(page: number): void {
         setPagination(prev => ({ ...prev!, number: page }))
         setFilter(filter => ({...filter, page: page}))
@@ -116,16 +104,16 @@ export function Drivers(): ReactElement {
         if (hasURLParams()) {
             setFilterFromURLParams()
         }
-        setIsInitialLoad(false)
+        setIsReadyToFetch(true)
     }, [])
 
     useEffect(() => {
-        if (!isInitialLoad) fetchDrivers()
-    }, [filter, isInitialLoad])
+        if (data) handleFetchedData(data)
+    }, [data])
 
     return (
         <article className="drivers">
-            {isSuccess && <>
+            {isSuccess && isDataReady && <>
                 <Table pagination={pagination!} data={ drivers } type="drivers"/>
                 <Pagination pagination={pagination!} handlePaging={handlePaging}/></>
             }

@@ -2,9 +2,9 @@ import {ReactElement, useEffect, useState} from "react";
 import {Table} from "../../components/table/Table";
 import "./style/driverLaps.scss"
 import {IDriverLaps, IDriverLapsProps, IDriverLapsTable} from "./types/driverLaps";
-import {FETCH_STATUS} from "../../data/constants";
 import {getDriverSessionLaps} from "../../services/lapsService";
 import {useNavigate} from "react-router-dom";
+import {useFetch} from "../../hooks/useFetch";
 
 export function DriverLaps(props: IDriverLapsProps): ReactElement {
     const {isOpen, setIsOpen, sessionID, driverID} = props
@@ -12,38 +12,15 @@ export function DriverLaps(props: IDriverLapsProps): ReactElement {
     const [driver, setDriver] = useState<string>("")
     const [laps, setLaps] = useState<IDriverLapsTable[] | object[]>([{}])
 
-    const [status, setStatus] = useState<string>(FETCH_STATUS.IDLE)
-    const isLoading = status === FETCH_STATUS.LOADING
-    const isSuccess = status === FETCH_STATUS.SUCCESS
-    const isError = status === FETCH_STATUS.ERROR
-    const [error, setError] = useState<string | null>(null)
-
     const navigate = useNavigate()
 
     const formattedName = (name: string): string => name.charAt(name.length-1) === "s" ? `${name}'` : `${name}'s`
 
-    async function fetchLaps(): Promise<void> {
-        if (!driverID) {
-            setStatus(FETCH_STATUS.ERROR)
-            setError("Driver ID is missing")
-            return
-        }
+    const {data, isLoading, isSuccess, isError, error} = useFetch(getDriverSessionLaps, [sessionID, driverID], isOpen, [driverID])
 
-        try {
-            setStatus(FETCH_STATUS.LOADING)
-
-            const response = await getDriverSessionLaps(sessionID, driverID)
-            const driverLaps: IDriverLaps[] = response.data
-
-            if (driverLaps) {
-                setDriver(driverLaps[0].driver)
-                setLaps(toDriverLapsTableFormat(driverLaps))
-                setStatus(FETCH_STATUS.SUCCESS)
-            }
-        } catch (e: any) {
-            setStatus(FETCH_STATUS.ERROR)
-            setError(e?.message)
-        }
+    function handleFetchedData(data: IDriverLaps[]): void {
+        setDriver(formattedName(data[0].driver))
+        setLaps(toDriverLapsTableFormat(data))
     }
 
     function toDriverLapsTableFormat(driverLaps: IDriverLaps[]): IDriverLapsTable[] {
@@ -65,17 +42,18 @@ export function DriverLaps(props: IDriverLapsProps): ReactElement {
     }
 
     useEffect(() => {
-        if (isOpen)
-            fetchLaps()
-        if (!isOpen)
-            setLaps([{}])
-    },[driverID, isOpen])
+        if (!isOpen) setLaps([{}])
+    },[isOpen])
+
+    useEffect(() => {
+        if (data) handleFetchedData(data)
+    }, [data])
 
     return (
         <dialog open={isOpen} className="driverLaps">
             {isSuccess && <>
                 <span className="close" onClick={() => {setIsOpen(false)}}>Close</span>
-                <h3 className="driver">{formattedName(driver)} laps</h3>
+                <h3 className="driver">{driver} laps</h3>
                 <div className="laps">
                     <Table data={laps} type={"sessionLaps"} handleBodyRowClick={handleTableBodyRowClick}/>
                 </div>

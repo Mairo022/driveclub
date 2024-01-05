@@ -2,7 +2,7 @@ interface ISessionProps {
     session: ISessionOverview
 }
 
-interface ISessionOverview extends ISessionDetails {
+interface ISessionOverview extends ISessionDetailsRanks {
     sessionID: string
     date: string
     track: string
@@ -10,7 +10,7 @@ interface ISessionOverview extends ISessionDetails {
     totalDrivers: number
 }
 
-interface ISessionDetails {
+interface ISessionDetailsRanks {
     first: undefined | string
     firstID: undefined | string
     second: undefined | string
