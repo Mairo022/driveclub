@@ -33,6 +33,17 @@
   & .driver {
     margin-left: 1px;
     margin-bottom: 10px;
+
+    &__link {
+      color: #262326;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-underline-mode: 5px;
+
+      &:hover {
+        color: #23ad96;
+      }
+    }
   }
 
   & .laps {

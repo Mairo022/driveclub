@@ -3,7 +3,7 @@ import {Table} from "../../components/table/Table";
 import "./style/driverLaps.scss"
 import {IDriverLaps, IDriverLapsProps, IDriverLapsTable} from "./types/driverLaps";
 import {getDriverSessionLaps} from "../../services/lapsService";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useFetch} from "../../hooks/useFetch";
 
 export function DriverLaps(props: IDriverLapsProps): ReactElement {
@@ -53,7 +53,11 @@ export function DriverLaps(props: IDriverLapsProps): ReactElement {
         <dialog open={isOpen} className="driverLaps">
             {isSuccess && <>
                 <span className="close" onClick={() => {setIsOpen(false)}}>Close</span>
-                <h3 className="driver">{driver} laps</h3>
+                <h3 className="driver">
+                    <Link className="driver__link" to={`/drivers/${driverID}`}>
+                        {driver}
+                    </Link> laps
+                </h3>
                 <div className="laps">
                     <Table data={laps} type={"sessionLaps"} handleBodyRowClick={handleTableBodyRowClick}/>
                 </div>
