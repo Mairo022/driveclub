@@ -8,3 +8,9 @@ export function getDriverSessionLaps(sessionID: string, driverID: string): Axios
 
     return axios.get(url)
 }
+
+export function getLap(lapID: number): AxiosPromise {
+    const url = `${apiURL}/getLapStat?id=${lapID}`
+
+    return axios.get(url)
+}

@@ -2,4 +2,67 @@ article.lap {
   margin: 0 auto;
   padding: 20px 30px;
   max-width: 1200px;
+  border-radius: 3px;
+  color: #262326;
+  box-shadow: 0 0 3px #CCC;
+  background-color: rgba(245, 245, 245, 0.85);
+
+  & .heading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px 0;
+
+    &__combination {
+
+      &__driver {
+        color: #262326;
+        font-size: .78em;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-underline-mode: 5px;
+
+        &:hover {
+          color: #23ad96;
+        }
+      }
+
+      &__span {
+        font-size: 0.75em;
+      }
+    }
+  }
+
+  & .session {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 50px;
+
+    & .conditions {
+      margin: 15px 0 0;
+      padding: 4px 8px;
+      border-radius: 3px;
+      border: 1px solid #d7d7d7;
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 3px #ddd;
+
+      &__row {
+        &:first-child {
+          padding-bottom: 4px;
+        }
+
+        &__header {
+          width: 90px;
+        }
+
+        & > * {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  & .lap {
+    margin-top: 20px;
+  }
 }

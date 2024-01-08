@@ -159,7 +159,7 @@
   }
 }
 
-.Table:not(.Table--logs, .Table--driver) {
+.Table:not(.Table--logs, .Table--driver, .Table--lap) {
   .body__row {
     cursor: pointer;
 
@@ -245,6 +245,15 @@
   }
 }
 
+.Table--lap {
+  .header__row__title,
+  .body__row__item {
+    &.\# {
+      display: none;
+    }
+  }
+}
+
 @mixin table-responsive($class-name, $max-width) {
   @media screen and (max-width: #{$max-width}) {
     .#{$class-name} {
@@ -301,3 +310,4 @@
 @include table-responsive('Table--driverLaps', 1170px);
 @include table-responsive('Table--sessionDetails', 740px);
 @include table-responsive('Table--sessionLaps', 500px);
+@include table-responsive('Table--lap', 740px);

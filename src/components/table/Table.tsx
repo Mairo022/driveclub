@@ -27,7 +27,7 @@ export function Table(props: ITable): ReactElement {
     }
 
     useEffect(() => {
-        if (type === "logs" || type === "driver" || type === "driverLaps") return
+        if (type === "logs" || type === "driver" || type === "driverLaps" || type === "lap") return
 
         tableBodyRef.current?.addEventListener('mouseup', handleBodyRowClick)
 
