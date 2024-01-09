@@ -1,6 +1,5 @@
 import { ReactElement, useEffect, useState } from "react";
 import {Table} from "../../components/table/Table";
-import "./style/drivers.scss";
 import { getDrivers } from "../../services/driversService";
 import { Pagination } from "../../components/pagination/Pagination";
 import { useLocation, useNavigate } from 'react-router-dom';

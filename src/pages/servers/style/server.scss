@@ -7,10 +7,10 @@
   position: relative;
   max-width: 1200px;
   margin: 0 auto 20px;
-  padding: 20px 30px;
-  border-radius: 3px;
-  box-shadow: 0 0 3px #CCC;
-  background-color: rgba(245, 245, 245, 0.85);
+  padding: $page_padding;
+  border-radius: $page_border_radius;
+  box-shadow: $page_box_shadow;
+  background-color: $page_bg_color;
 
   &__title {
     font-family: Roboto Medium, $fonts_default;
@@ -51,7 +51,7 @@
     padding-top: 6.5px;
     font-family: Roboto Bold, $fonts_default;
     font-size: 14px;
-    color: #25C2A0;
+    color: $font_color_link;
     text-decoration: underline;
     text-underline-offset: 4px;
 
@@ -81,7 +81,7 @@
       width: 16px;
       transform: translateY(1.5px);
       transition: 0.2s ease-in-out;
-      color: #262326;
+      color: $font_color_dark;
 
       &.open {
         transform: scaleY(-1);

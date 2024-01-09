@@ -1,11 +1,13 @@
+@import "src/assets/variables";
+
 article.lap {
   margin: 0 auto;
-  padding: 20px 30px;
+  padding: $page_padding;
   max-width: 1200px;
-  border-radius: 3px;
-  color: #262326;
-  box-shadow: 0 0 3px #CCC;
-  background-color: rgba(245, 245, 245, 0.85);
+  border-radius: $page_border_radius;
+  color: $font_color_dark;
+  box-shadow: $page_box_shadow;
+  background-color: $page_bg_color;
 
   & .heading {
     display: flex;
