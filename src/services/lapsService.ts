@@ -14,3 +14,9 @@ export function getLap(lapID: number): AxiosPromise {
 
     return axios.get(url)
 }
+
+export function getValidDriverLaps(driverID: string): AxiosPromise {
+    const url = `${apiURL}/getValidDriverLaps?driverID=${driverID}`
+
+    return axios.get(url)
+}

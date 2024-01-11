@@ -5,4 +5,13 @@ interface ITable {
     handleBodyRowClick?: (e: any) => void
 }
 
-type tableType = "online" | "drivers" | "stats" | "logs" | "driver" | "driverLaps" | "sessionLaps" | "sessionDetails" | "lap"
+type tableType = "online" |
+    "drivers" |
+    "stats" |
+    "logs" |
+    "driver" |
+    "driverLaps" |
+    "sessionLaps" |
+    "sessionDetails" |
+    "lap" |
+    "laps"

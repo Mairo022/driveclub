@@ -254,6 +254,15 @@
   }
 }
 
+.Table--laps {
+  .header__row__title,
+  .body__row__item {
+    &.date {
+      width: 180px;
+    }
+  }
+}
+
 @mixin table-responsive($class-name, $max-width) {
   @media screen and (max-width: #{$max-width}) {
     .#{$class-name} {
@@ -311,3 +320,5 @@
 @include table-responsive('Table--sessionDetails', 740px);
 @include table-responsive('Table--sessionLaps', 500px);
 @include table-responsive('Table--lap', 740px);
+@include table-responsive('Table--laps', 740px);
+@include table-responsive('Table--laps', 900px);

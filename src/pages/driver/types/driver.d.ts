@@ -1,15 +1,3 @@
-interface IDriverTable {
-    money: number
-    wins: number
-    podiums: number
-    poles: number
-    driven: number
-    infractions: number
-    crashes: number
-    "infractions/100km": number
-    "crashes/100km": number
-}
-
 interface IDriverLaps {
     track: string
     car: string
@@ -20,4 +8,23 @@ interface IDriverLaps {
     date: string
     tc: number
     abs: number
+}
+
+interface IDriverColumns {
+    firstColumn: IDriverColumnOne | undefined
+    secondColumn: IDriverColumnTwo | undefined
+}
+
+interface IDriverColumnOne {
+    money: number
+    wins: number
+    podiums: number
+    poles: number
+}
+
+interface IDriverColumnTwo {
+    crashes: number
+    infractions: number
+    "crashes/100km": number
+    "infractions/100km": number
 }
