@@ -20,3 +20,9 @@ export function getValidDriverLaps(driverID: string): AxiosPromise {
 
     return axios.get(url)
 }
+
+export function getValidLaps(car: string, track: string): AxiosPromise {
+    const url = `${apiURL}/getLeaderboard?car=${car}&track=${track}`
+
+    return axios.get(url)
+}

@@ -1,17 +1,22 @@
 import {ReactElement, useEffect, useState} from "react";
 import "./style/selectBox.scss";
-import { tracksCars } from "./data/mockStats";
 import { nanoid } from "nanoid";
-import {ISelectBoxProps, ITracksCars, ITracksCarsExtracted} from "./types/stats";
+import {ISelectBoxProps} from "./types/stats";
+import {useFetch} from "../../hooks/useFetch";
+import {getCars, getTracks} from "../../services/statsService";
 
 export default function SelectBox(props: ISelectBoxProps): ReactElement {
-    const {cars, tracks} = extractTracksCars(tracksCars)
     const {setCar, setTrack} = props
 
     const [selectedTrackOption, setSelectedTrackOption] = useState<number>(1)
     const [selectedCarOption, setSelectedCarOption] = useState<number>(1000)
     const [selectedTrack, setSelectedTrack] = useState<string>("")
     const [selectedCar, setSelectedCar] = useState<string>("")
+
+    const {data, isLoading, isSuccess, isError, error} = useFetch([
+        {fn: getCars, params: [undefined]},
+        {fn: getTracks, params: [undefined]}
+    ])
 
     const handleTrackOptionChange = (e: any): void => {
         setSelectedTrack(e.target.dataset.name)
@@ -23,19 +28,6 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
         setSelectedCarOption(parseInt(e.target.value))
     }
 
-    function extractTracksCars(data: ITracksCars[]): ITracksCarsExtracted {
-        let tracks: string[] = []
-        let cars: string[] = []
-
-        data.forEach(item => {
-            tracks.push(item.track)
-            cars.push(...item.cars.flat())
-        })
-        cars = [...new Set(cars)]
-
-        return {tracks, cars}
-    }
-
     function handleSearch(e: any): void {
         setCar(selectedCar)
         setTrack(selectedTrack)
@@ -43,15 +35,18 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
     }
 
     useEffect(() => {
-        setSelectedCar(cars[selectedCarOption - 1000])
-        setSelectedTrack(tracks[selectedTrackOption])
-    }, [])
+        if (!data) return
+        setSelectedCar(data[0][selectedCarOption - 1000])
+        setSelectedTrack(data[1][selectedTrackOption])
+    }, [data])
 
-    return (
+
+    return (<>
+        {isSuccess &&
         <form onSubmit={handleSearch} className="search">
             <div className="select-box">
                 <div className="select-box__current" tabIndex={1}>{
-                    tracks.map((track, index) => (
+                    data[1].map((track: string, index: number) => (
                         <div className="select-box__value" key={nanoid()}>
                             <input
                                 className="select-box__input"
@@ -74,7 +69,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
                     />
                 </div>
                 <ul className="select-box__list">{
-                    tracks.map((track, index) => (
+                    data[1].map((track: string, index: number) => (
                         <li key={nanoid()}>
                             <label className="select-box__option" htmlFor={index.toString()} aria-hidden="true">{track}</label>
                         </li>
@@ -84,7 +79,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
 
             <div className="select-box">
                 <div className="select-box__current" tabIndex={2}>{
-                    cars.map((car, index) => (
+                    data[0].map((car: string, index: number) => (
                         <div className="select-box__value" key={nanoid()}>
                             <input
                                 className="select-box__input"
@@ -107,7 +102,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
                     />
                 </div>
                 <ul className="select-box__list">{
-                    cars.map((car, index) => (
+                    data[0].map((car: string, index: number) => (
                         <li key={nanoid()}>
                             <label className="select-box__option" htmlFor={(index+1000).toString()} aria-hidden="true">{car}</label>
                         </li>
@@ -115,6 +110,9 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
                 </ul>
             </div>
             <button className="submit" type="submit">Search</button>
-        </form>
+        </form>}
+        {isError && <span className="error">{error}</span>}
+        {isLoading && <span className="loading">Loading...</span>}
+        </>
     )
 }

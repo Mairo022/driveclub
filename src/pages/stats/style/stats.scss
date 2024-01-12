@@ -1,4 +1,15 @@
-.stats {
-  display: flex;
-  flex-direction: column;
+@import "src/assets/variables";
+
+article.stats {
+  position: relative;
+  max-width: 1200px;
+  padding: $page_padding;
+  background-color: $page_bg_color;
+  border-radius: $page_border_radius;
+  box-shadow: $page_box_shadow;
+  margin: 0 auto;
+
+  .message {
+    padding-left: 2px;
+  }
 }

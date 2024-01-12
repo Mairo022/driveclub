@@ -1,4 +1,6 @@
-.search {
+@import "src/assets/variables";
+
+form.search {
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
@@ -9,10 +11,24 @@
   margin-bottom: 15px;
 
   .submit {
+    background-color: #EFEFEF;
+    border: 1px solid #d2d2d2;
+    box-shadow: 0 0 3px #ccc;
     min-height: 50px;
     width: 150px;
     flex-grow: 1;
     cursor: pointer;
+    transition-property: background-color, border;
+    transition-timing-function: ease-out;
+    transition-duration: 0.2s;
+
+    &:hover {
+      background-color: #F8F8F8;
+      border: 1px solid #c2c2c2;
+      transition-property: background-color, border;
+      transition-timing-function: ease-out;
+      transition-duration: 0.2s;
+    }
   }
 
   .select-box {
@@ -88,7 +104,8 @@
       list-style: none;
       opacity: 0;
       z-index: 10;
-
+      max-height: 50vh;
+      overflow-y: auto;
       animation-name: HideList;
       animation-duration: 0.5s;
       animation-delay: 0.5s;
