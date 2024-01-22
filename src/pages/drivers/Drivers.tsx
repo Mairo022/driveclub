@@ -25,7 +25,7 @@ export function Drivers(): ReactElement {
         size: 20
     })
 
-    const {data, isLoading, isSuccess, isError, error} = useFetch(getDrivers, [filter], isReadyToFetch)
+    const {data, isLoading, isSuccess, isError, error} = useFetch(getDrivers, [filter], isReadyToFetch, [filter])
 
     function handleFetchedData(data: IPageResponse<IDriverServer[]>) {
         const drivers = data.content
