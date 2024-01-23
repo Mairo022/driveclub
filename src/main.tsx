@@ -24,11 +24,6 @@ const router = createBrowserRouter([
                 errorElement: <h2>Error loading servers</h2>,
             },
             {
-                path: "/servers",
-                Component: Servers,
-                errorElement: <h2>Error loading servers</h2>,
-            },
-            {
                 path: "/drivers",
                 Component: Drivers,
                 errorElement: <h2>Error loading drivers</h2>,

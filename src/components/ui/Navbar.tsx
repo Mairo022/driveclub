@@ -10,7 +10,7 @@ import logsSVG from "../../assets/images/logs.svg";
 export function Navbar(): ReactElement {
     return (
         <nav className="navbar">
-            <NavLink className="route" to="/servers">
+            <NavLink className="route" to="/">
                 <img className="route__img" src={serversSVG}/>
                 <p className="route__text">SERVERS</p>
             </NavLink>
