@@ -1,6 +1,5 @@
 import {ReactElement, useEffect, useState} from "react";
 import "./style/selectBox.scss";
-import { nanoid } from "nanoid";
 import {ISelectBoxProps} from "./types/stats";
 import {useFetch} from "../../hooks/useFetch";
 import {getCars, getTracks} from "../../services/statsService";
@@ -47,7 +46,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
             <div className="select-box">
                 <div className="select-box__current" tabIndex={1}>{
                     data[1].map((track: string, index: number) => (
-                        <div className="select-box__value" key={nanoid()}>
+                        <div className="select-box__value" key={index}>
                             <input
                                 className="select-box__input"
                                 type="radio"
@@ -70,7 +69,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
                 </div>
                 <ul className="select-box__list">{
                     data[1].map((track: string, index: number) => (
-                        <li key={nanoid()}>
+                        <li key={index}>
                             <label className="select-box__option" htmlFor={index.toString()} aria-hidden="true">{track}</label>
                         </li>
                     ))}
@@ -80,7 +79,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
             <div className="select-box">
                 <div className="select-box__current" tabIndex={2}>{
                     data[0].map((car: string, index: number) => (
-                        <div className="select-box__value" key={nanoid()}>
+                        <div className="select-box__value" key={index}>
                             <input
                                 className="select-box__input"
                                 type="radio"
@@ -103,7 +102,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
                 </div>
                 <ul className="select-box__list">{
                     data[0].map((car: string, index: number) => (
-                        <li key={nanoid()}>
+                        <li key={index}>
                             <label className="select-box__option" htmlFor={(index+1000).toString()} aria-hidden="true">{car}</label>
                         </li>
                     ))}

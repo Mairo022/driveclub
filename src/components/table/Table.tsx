@@ -1,5 +1,4 @@
 import { ReactElement, useEffect, useRef } from "react";
-import {nanoid} from "nanoid";
 import "./table.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -48,10 +47,10 @@ export function Table(props: ITable): ReactElement {
             </thead>
             <tbody className="body" ref={tableBodyRef}>{
                 data.map((obj: any, i) => (
-                    <tr className="body__row" key={nanoid()} data-id={obj?.id}>
-                        <td className={`body__row__item #`} key={nanoid()} data-label="#">{indexStart+i}</td>{
-                            Object.entries(obj).map(([key, value]: any, i) => (key !== "id" &&
-                                <td className={`body__row__item ${key}`} key={i} data-label={key}>{value}</td>
+                    <tr className="body__row" key={i} data-id={obj?.id}>
+                        <td className={`body__row__item #`} data-label="#">{indexStart+i}</td>{
+                            Object.entries(obj).map(([key, value]: any, j) => (key !== "id" &&
+                                <td className={`body__row__item ${key}`} key={j+1000} data-label={key}>{value}</td>
                             ))}
                     </tr>
                 ))}

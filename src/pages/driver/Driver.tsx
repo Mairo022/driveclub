@@ -38,15 +38,15 @@ export function Driver(): ReactElement {
             </header>
             <div className="info">
                 <div className="conditions">
-                {Object.entries(firstColumn).map(([key, value]) => (
-                    <div className="conditions__row">
+                {Object.entries(firstColumn).map(([key, value], i) => (
+                    <div className="conditions__row" key={i}>
                         <p className="conditions__row__header">{capitalise(key)}</p>
                         <p className="conditions__row__data">{value}{key === "money" && "$"}</p>
                     </div>))}
                 </div>
                 <div className="conditions">
-                {Object.entries(secondColumn).map(([key, value]) => (
-                    <div className="conditions__row">
+                {Object.entries(secondColumn).map(([key, value], i) => (
+                    <div className="conditions__row" key={i}>
                         <p className="conditions__row__header">{capitalise(key)}</p>
                         <p className="conditions__row__data">{value}</p>
                     </div>))}
