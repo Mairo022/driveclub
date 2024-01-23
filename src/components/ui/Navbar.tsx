@@ -11,23 +11,23 @@ export function Navbar(): ReactElement {
     return (
         <nav className="navbar">
             <NavLink className="route" to="/">
-                <img className="route__img" src={serversSVG}/>
+                <img alt="servers" className="route__img" src={serversSVG}/>
                 <p className="route__text">SERVERS</p>
             </NavLink>
             <NavLink className="route" to="/drivers" end>
-                <img className="route__img" src={driversSVG}/>
+                <img alt="drivers" className="route__img" src={driversSVG}/>
                 <p className="route__text">DRIVERS</p>
             </NavLink>
             <NavLink className="route" to="/sessions">
-                <img className="route__img" src={sessionsSVG}/>
+                <img alt="sessions" className="route__img" src={sessionsSVG}/>
                 <p className="route__text">SESSIONS</p>
             </NavLink>
             <NavLink className="route" to="/stats">
-                <img className="route__img" src={statsSVG}/>
+                <img alt="stats" className="route__img" src={statsSVG}/>
                 <p className="route__text">STATS</p>
             </NavLink>
             <NavLink className="route" to="/logs">
-                <img className="route__img" src={logsSVG}/>
+                <img alt="logs" className="route__img" src={logsSVG}/>
                 <p className="route__text">LOGS</p>
             </NavLink>
         </nav>
