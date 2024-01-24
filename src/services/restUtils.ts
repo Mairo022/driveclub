@@ -1,11 +1,15 @@
 export function buildRequestParams(filter: IPageRequest): string {
-    const {page, size, sort, direction} = filter
-    const paramsMap = new Map<IRequestParams, string>()
+    const paramsMap = new Map<string, string | number>()
     let params = ""
 
-    if (page != null) paramsMap.set("page", String(page))
-    if (size != null) paramsMap.set("size", String(size))
-    if (sort != null && direction != null) paramsMap.set("sort", sort + ',' + direction ?? '')
+    Object.entries(filter).forEach(([key, value]) => {
+        paramsMap.set(key, value)
+    })
+
+    if (paramsMap.has("direction") && paramsMap.has("sort")) {
+        paramsMap.set("sort", paramsMap.get("sort") + ',' + paramsMap.get("direction"))
+    }
+    paramsMap.delete("direction")
 
     paramsMap.forEach((value, key) => {
         if (params === "")
