@@ -1,9 +1,5 @@
-import {Dispatch, SetStateAction} from "react";
-
-
 interface ISelectBoxProps {
-    setCar: Dispatch<SetStateAction<string>>
-    setTrack: Dispatch<SetStateAction<string>>
+    setCarTrack: (car: string, track: string) => void
 }
 
 interface ILapLeaderboard {

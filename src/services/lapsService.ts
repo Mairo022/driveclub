@@ -21,8 +21,8 @@ export function getValidDriverLaps(driverID: string): AxiosPromise {
     return axios.get(url)
 }
 
-export function getValidLaps(car: string, track: string): AxiosPromise {
-    const url = `${apiURL}/getLeaderboard?car=${car}&track=${track}`
+export function getValidLaps(filter: string): AxiosPromise {
+    const url = `${apiURL}/getLeaderboard?${filter}`
 
     return axios.get(url)
 }

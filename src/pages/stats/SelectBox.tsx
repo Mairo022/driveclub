@@ -1,11 +1,10 @@
 import {ReactElement, useEffect, useState} from "react";
 import "./style/selectBox.scss";
-import {ISelectBoxProps} from "./types/stats";
 import {useFetch} from "../../hooks/useFetch";
 import {getCars, getTracks} from "../../services/statsService";
 
 export default function SelectBox(props: ISelectBoxProps): ReactElement {
-    const {setCar, setTrack} = props
+    const {setCarTrack} = props
 
     const [selectedTrackOption, setSelectedTrackOption] = useState<number>(1)
     const [selectedCarOption, setSelectedCarOption] = useState<number>(1000)
@@ -28,8 +27,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
     }
 
     function handleSearch(e: any): void {
-        setCar(selectedCar)
-        setTrack(selectedTrack)
+        setCarTrack(selectedCar, selectedTrack)
         e.preventDefault()
     }
 
