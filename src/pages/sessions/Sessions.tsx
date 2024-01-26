@@ -4,7 +4,7 @@ import {getSessionsOverviews} from "../../services/sessionsService";
 import {Pagination} from "../../components/pagination/Pagination";
 import {Session} from "./Session";
 import {buildRequestParams} from "../../services/restUtils";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {hasURLParams} from "../../utils/url";
 import {hasAllKeys, isShallowEqualObject} from "../../utils/compareObjects";
 import {fullDatetimeFormat} from "../../utils/dateFormatter";
@@ -18,11 +18,16 @@ export function Sessions(): ReactElement {
     const [sessions, setSessions] = useState<ISessionOverview[]>([])
 
     const navigate = useNavigate()
+    const location = useLocation()
 
-    const [filter, setFilter] = useState<IPageRequest>({
+    const defaultFilter: IPageRequest = {
+        sort: "date",
+        direction: "desc",
         page: 0,
         size: 14
-    })
+    }
+
+    const [filter, setFilter] = useState<IPageRequest>(defaultFilter)
 
     const {data, isLoading, isSuccess, isError, error} = useFetch(getSessionsOverviews, [filter], isReadyToFetch, [filter])
 
@@ -130,9 +135,12 @@ export function Sessions(): ReactElement {
     useEffect(() => {
         if (hasURLParams()) {
             setFilterFromURLParams()
+        } else {
+            setFilter(defaultFilter)
         }
+
         setIsReadyToFetch(true)
-    }, [])
+    }, [location.search])
 
     useEffect(() => {
         if (data) handleFetchedData(data)

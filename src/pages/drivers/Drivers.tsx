@@ -18,12 +18,14 @@ export function Drivers(): ReactElement {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const [filter, setFilter] = useState<IPageRequest>({
+    const defaultFilter: IPageRequest = {
         sort: "money",
         direction: "desc",
         page: 0,
         size: 20
-    })
+    }
+
+    const [filter, setFilter] = useState<IPageRequest>(defaultFilter)
 
     const {data, isLoading, isSuccess, isError, error} = useFetch(getDrivers, [filter], isReadyToFetch, [filter])
 
@@ -102,9 +104,12 @@ export function Drivers(): ReactElement {
     useEffect(() => {
         if (hasURLParams()) {
             setFilterFromURLParams()
+        } else {
+            setFilter(defaultFilter)
         }
+
         setIsReadyToFetch(true)
-    }, [])
+    }, [location.search])
 
     useEffect(() => {
         if (data) handleFetchedData(data)
