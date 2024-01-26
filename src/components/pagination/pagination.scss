@@ -21,6 +21,10 @@
     transition: 0.1s color ease-in-out;
     cursor: pointer;
 
+    &:disabled:hover {
+      cursor: unset;
+    }
+
     &:hover {
       background-color: rgba(0,0,0,0.05);
       transition: 0.1s color ease-in-out;

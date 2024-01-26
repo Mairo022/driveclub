@@ -56,7 +56,7 @@ export function Pagination(props: IPagination): ReactElement {
             </button>{
 
             pages.map((page, i) => (
-                <button className={className(page)} key={i} onClick={() => {handlePaging(page-1)}}>
+                <button className={className(page)} disabled={page-1 === pageNow} key={i} onClick={() => {handlePaging(page-1)}}>
                     {page}
                 </button>
             ))}
