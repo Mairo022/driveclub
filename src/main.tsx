@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import 'normalize.css'
+import './assets/normalize.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Servers} from "./pages/servers/Servers";
 import {RootLayout} from "./layouts/RootLayout";
