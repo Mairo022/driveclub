@@ -6,7 +6,7 @@
       display: flex;
       flex-wrap: nowrap;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       gap: 10px;
       color: $font_color_dark;
       padding: 12px 20px;
@@ -25,18 +25,26 @@
       }
 
       &__title {
+        flex-basis: 0;
+        flex-grow: 1;
+        flex-shrink: 0;
+        min-width: fit-content;
         font-family: 'Roboto Medium', $fonts_default;
       }
 
       &__results {
         display: flex;
-        justify-content: center;
         flex-wrap: wrap;
         gap: 5px 20px;
+        justify-content: center;
       }
 
       &__date {
+        flex-basis: 0;
+        flex-grow: 1;
         flex-shrink: 0;
+        min-width: fit-content;
+        text-align: right;
       }
     }
   }
