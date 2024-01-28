@@ -15,7 +15,7 @@ export function Pagination(props: IPagination): ReactElement {
     function generatePageNumbers(pageNow: number, pagesTotal: number, pagesShown: number): number[] {
         let startPage: number, endPage: number
         const pages = new Array<number>()
-        const toSides = Math.floor(pagesShown/2)
+        const toSides = pagesTotal > pagesShown ? Math.floor(pagesShown/2) : Math.floor(pagesTotal/2)
 
         const lessPagesInFirstHalf = pageNow - toSides < 0
         const lessPagesInSecondHalf = pageNow + toSides > pagesTotal
