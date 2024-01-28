@@ -22,7 +22,7 @@ export function Session(): ReactElement {
     const [filter] = useState<IPageRequest>({
         page: 0,
         size: 0,
-        sort: "totalTime",
+        sort: "rank",
         direction: "asc"
     })
 
@@ -41,7 +41,7 @@ export function Session(): ReactElement {
         if (type === "Race") {
             return sessionDetails.map(session => ({
                 "id": session.driverID,
-                "rank": session.rank,
+                "rank": session.rank ?? "DNF",
                 "driver": session.name,
                 "car": session.car,
                 "total time": session.totalTime,
@@ -53,7 +53,7 @@ export function Session(): ReactElement {
         if (type === "Qualify" || type === "Practice") {
             return sessionDetails.map(session => ({
                 "id": session.driverID,
-                "rank": session.rank,
+                "rank": session.rank ?? "DNQ",
                 "driver": session.name,
                 "car": session.car,
                 "fastest lap": session.fastestLap,
