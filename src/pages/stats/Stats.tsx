@@ -44,8 +44,7 @@ export function Stats(): ReactElement {
     }
 
     function handleCarTrackChange(car: string, track: string): void {
-        handlePaging(0)
-        handleFilterUpdate({car, track})
+        handleFilterUpdate({car, track, page: 0})
     }
 
     function handlePaging(page: number): void {
@@ -84,7 +83,7 @@ export function Stats(): ReactElement {
     }
 
     useEffect(() => {
-        setDefaultParams()
+       setDefaultParams()
     }, [])
 
     useEffect(() => {

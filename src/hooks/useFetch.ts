@@ -44,6 +44,7 @@ export function useFetch(fetchService: IFetchHook | Function,
 
     useEffect(() => {
         if (isReadyToFetch) fetchData()
+        else setStatus(FETCH_STATUS.IDLE)
     }, [isReadyToFetch, ...dependencies])
 
     return {data, isLoading, isSuccess, isError, error}
