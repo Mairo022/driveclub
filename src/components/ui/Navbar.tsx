@@ -5,7 +5,6 @@ import serversSVG from "../../assets/images/servers.svg";
 import driversSVG from "../../assets/images/drivers.svg";
 import sessionsSVG from "../../assets/images/sessions.svg";
 import statsSVG from "../../assets/images/stats.svg";
-import logsSVG from "../../assets/images/logs.svg";
 
 export function Navbar(): ReactElement {
     return (
@@ -25,10 +24,6 @@ export function Navbar(): ReactElement {
             <NavLink className="route" to="/stats">
                 <img alt="stats" className="route__img" src={statsSVG}/>
                 <p className="route__text">STATS</p>
-            </NavLink>
-            <NavLink className="route" to="/logs">
-                <img alt="logs" className="route__img" src={logsSVG}/>
-                <p className="route__text">LOGS</p>
             </NavLink>
         </nav>
     )
