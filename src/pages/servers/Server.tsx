@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { Table } from "../../components/table/Table";
 import "./style/server.scss";
 
@@ -7,6 +7,16 @@ export function Server(props: IServerProps) {
     const server = props.server
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const openClassName = isOpen ? " open" : ""
+    const navigate = useNavigate()
+
+    function handleTableBodyRowClick(e: any): void {
+        const id: string | null = e.target.parentNode.getAttribute("data-id")
+
+        if (id === null) return
+
+        if (e.button === 0) navigate("drivers/" + id)
+        if (e.button === 1) window.open(window.location + "drivers/" + id, "_blank")
+    }
 
     return (
         <div className="server">
@@ -25,7 +35,7 @@ export function Server(props: IServerProps) {
             <div className={`server__activity${openClassName}`}>
                 <p className="server__activity__description">Currently online</p>
                 <div className="server__activity__online">
-                    <Table data={server.drivers} type="online"/>
+                    <Table data={server.drivers} type="online" handleBodyRowClick={handleTableBodyRowClick}/>
                 </div>
                 <Link className="server__activity__results" to="#">All Results</Link>
             </div>
