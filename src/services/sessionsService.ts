@@ -4,8 +4,7 @@ import {buildRequestParams} from "./restUtils";
 
 const apiURL: string = import.meta.env.VITE_API_URL + "/sessions"
 
-export function getSessionsOverviews(filter: IPageRequest): AxiosPromise<[]> {
-    const params: string = buildRequestParams(filter)
+export function getSessionsOverviews(params: string): AxiosPromise<[]> {
     const url = `${apiURL}/getOverviews?${params}`
 
     return axios.get(url)

@@ -3,33 +3,43 @@ import "./style/sessions.scss";
 import {getSessionsOverviews} from "../../services/sessionsService";
 import {Pagination} from "../../components/pagination/Pagination";
 import {Session} from "./Session";
-import {buildRequestParams} from "../../services/restUtils";
 import {useLocation, useNavigate} from "react-router-dom";
-import {hasURLParams} from "../../utils/url";
-import {hasAllKeys, isShallowEqualObject} from "../../utils/compareObjects";
 import {fullDatetimeFormat} from "../../utils/dateFormatter";
 import {useFetch} from "../../hooks/useFetch";
 
 export function Sessions(): ReactElement {
-    const [isReadyToFetch, setIsReadyToFetch] = useState<boolean>(false)
-    const [isDataReady, setIsDataReady] = useState<boolean>(false)
-
-    const [pagination, setPagination] = useState<IPaginationSB | undefined>()
-    const [sessions, setSessions] = useState<ISessionOverview[]>([])
-
-    const navigate = useNavigate()
     const location = useLocation()
+    const navigate = useNavigate()
+    const queryParams: URLSearchParams = new URLSearchParams(location.search)
 
-    const defaultFilter: IPageRequest = {
+    const page: number = Number(queryParams.get("page"))
+
+    const [isDataReady, setIsDataReady] = useState<boolean>(false)
+    const [isReadyToFetch, setIsReadyToFetch] = useState(false)
+
+    const [sessions, setSessions] = useState<ISessionOverview[]>([])
+    const [pagination, setPagination] = useState<IPaginationSB | undefined>()
+
+    const filterDefaults: IPageRequest = {
         sort: "date",
         direction: "desc",
         page: 0,
         size: 14
     }
 
-    const [filter, setFilter] = useState<IPageRequest>(defaultFilter)
+    const {data, isLoading, isSuccess, isError, error} = useFetch(
+        getSessionsOverviews,
+        [queryParams.toString()],
+        isReadyToFetch,
+        [page]
+    )
 
-    const {data, isLoading, isSuccess, isError, error} = useFetch(getSessionsOverviews, [filter], isReadyToFetch, [filter])
+    function handleFilterUpdate(update: {[key: string]: string | number}): void {
+        for (const key in update) {
+            queryParams.set(key, String(update[key]))
+        }
+        navigate({search: queryParams.toString()})
+    }
 
     function handleFetchedData(data: IPageResponse<Array<any>>): void {
         const sessionData = data.content
@@ -44,54 +54,8 @@ export function Sessions(): ReactElement {
         setIsDataReady(true)
     }
 
-    function setFilterFromURLParams(): void {
-        const search: string = location.search.slice(1)
-        const params: string[] = search.split("&")
-
-        const paramsObj: IPageRequest = params.map(param => {
-            const split = param.split("=")
-
-            const key = split[0]
-            const value = split[1]
-
-            if (key === "size" || key === "page") {
-                const valueInt = parseInt(value)
-
-                if (isNaN(valueInt)) {
-                    return key === "size" ? {[key]: 20} : {[key]: 0}
-                }
-
-                return {[key]: valueInt}
-            }
-
-            if (key === "sort") {
-                const values = value.split(",")
-                const sort = values[0]
-                const dir = values[1]
-
-                if (dir !== "asc" && dir !== "desc") {
-                    return {"sort": sort, "direction": "desc"}
-                }
-
-                return {"sort": sort, "direction": dir}
-            }
-
-            return {[key]: value}
-        }).reduce((acc: any, obj) => ({ ...acc, ...obj }), {})
-
-        if (!hasAllKeys(filter, paramsObj)) {
-            return
-        }
-
-        if (!isShallowEqualObject(filter, paramsObj)) {
-            setFilter(paramsObj)
-        }
-    }
-
     function handlePaging(page: number): void {
-        setPagination(prev => ({ ...prev!, number: page }))
-        setFilter(filter => ({...filter, page: page}))
-        navigate({search: buildRequestParams({...filter, page: page})})
+        handleFilterUpdate({page})
     }
 
     function organiseSessionData(sessionData: any[]): ISessionOverview[] {
@@ -132,15 +96,30 @@ export function Sessions(): ReactElement {
         })
     }
 
-    useEffect(() => {
-        if (hasURLParams()) {
-            setFilterFromURLParams()
-        } else {
-            setFilter(defaultFilter)
-        }
+    function setDefaultParams(): void {
+        const filterDefaultsKeys = Object.keys(filterDefaults) as Array<keyof IPageRequest>
+        const missingParams: Array<keyof IPageRequest> = filterDefaultsKeys.filter(
+            key => !queryParams.has(key) && key !== "direction"
+        )
 
+        if (missingParams.length > 0) {
+            missingParams.forEach((key) => {
+                queryParams.set(key, String(filterDefaults[key]))
+            })
+
+            if (missingParams.includes("sort")) {
+                const sortParam = filterDefaults["sort"] + "," + filterDefaults["direction"]
+                queryParams.set("sort", sortParam)
+            }
+
+            navigate({search: queryParams.toString()})
+        }
         setIsReadyToFetch(true)
-    }, [location.search])
+    }
+
+    useEffect(() => {
+        setDefaultParams()
+    }, [])
 
     useEffect(() => {
         if (data) handleFetchedData(data)
