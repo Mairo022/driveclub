@@ -29,6 +29,7 @@ $responsiveWidth: 500px;
       background-color: #FAFAFA;
       box-shadow: 0 0 4px #bababa;
       clip-path: inset(0 -4px 0 -4px);
+      pointer-events: none;
     }
 
     &:hover {
