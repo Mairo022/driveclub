@@ -6,6 +6,7 @@ import {Session} from "./Session";
 import {useLocation, useNavigate} from "react-router-dom";
 import {fullDatetimeFormat} from "../../utils/dateFormatter";
 import {useFetch} from "../../hooks/useFetch";
+import setDefaultParams from "../../utils/setDefaultParams";
 
 export function Sessions(): ReactElement {
     const location = useLocation()
@@ -96,29 +97,11 @@ export function Sessions(): ReactElement {
         })
     }
 
-    function setDefaultParams(): void {
-        const filterDefaultsKeys = Object.keys(filterDefaults) as Array<keyof IPageRequest>
-        const missingParams: Array<keyof IPageRequest> = filterDefaultsKeys.filter(
-            key => !queryParams.has(key) && key !== "direction"
-        )
-
-        if (missingParams.length > 0) {
-            missingParams.forEach((key) => {
-                queryParams.set(key, String(filterDefaults[key]))
-            })
-
-            if (missingParams.includes("sort")) {
-                const sortParam = filterDefaults["sort"] + "," + filterDefaults["direction"]
-                queryParams.set("sort", sortParam)
-            }
-
-            navigate({search: queryParams.toString()})
-        }
-        setIsReadyToFetch(true)
-    }
 
     useEffect(() => {
-        setDefaultParams()
+        setDefaultParams(queryParams, filterDefaults)
+        navigate({search: queryParams.toString()})
+        setIsReadyToFetch(true)
     }, [])
 
     useEffect(() => {

@@ -7,6 +7,7 @@ import {Table} from "../../components/table/Table";
 import {fullDatetimeFormat} from "../../utils/dateFormatter";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Pagination} from "../../components/pagination/Pagination";
+import setDefaultParams from "../../utils/setDefaultParams";
 
 export function Stats(): ReactElement {
     const location = useLocation()
@@ -68,22 +69,8 @@ export function Stats(): ReactElement {
         if (e.button === 1) window.open("/lap/" + id, "_blank")
     }
 
-    function setDefaultParams(): void {
-        const filterDefaultsKeys = Object.keys(filterDefaults) as (keyof IPageRequest)[]
-        const allParamsPresent: boolean = filterDefaultsKeys.every(key => queryParams.has(key))
-
-        if (!allParamsPresent) {
-            filterDefaultsKeys.forEach((key) => {
-                queryParams.set(key, String(filterDefaults[key]))
-            })
-
-            queryParams.set("sort", queryParams.get("sort") + ',' + queryParams.get("direction"))
-            queryParams.delete("direction")
-        }
-    }
-
     useEffect(() => {
-       setDefaultParams()
+       setDefaultParams(queryParams, filterDefaults)
     }, [])
 
     useEffect(() => {

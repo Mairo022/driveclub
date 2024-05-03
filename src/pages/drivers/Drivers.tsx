@@ -4,6 +4,7 @@ import { getDrivers } from "../../services/driversService";
 import { Pagination } from "../../components/pagination/Pagination";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useFetch } from "../../hooks/useFetch";
+import setDefaultParams from "../../utils/setDefaultParams";
 
 export function Drivers(): ReactElement {
     const location = useLocation()
@@ -26,26 +27,6 @@ export function Drivers(): ReactElement {
     }
 
     const {data, isLoading, isSuccess, isError, error} = useFetch(getDrivers, [queryParams.toString()], isReadyToFetch, [page])
-
-    function setDefaultParams(): void {
-        const filterDefaultsKeys = Object.keys(filterDefaults) as Array<keyof IPageRequest>
-        const missingParams: Array<keyof IPageRequest> = filterDefaultsKeys.filter(
-            key => !queryParams.has(key) && key !== "direction"
-        )
-
-        if (missingParams.length > 0) {
-            missingParams.forEach((key) => {
-                queryParams.set(key, String(filterDefaults[key]))
-            })
-
-            if (missingParams.includes("sort")) {
-                const sortParam = filterDefaults["sort"] + "," + filterDefaults["direction"]
-                queryParams.set("sort", sortParam)
-            }
-            navigate({search: queryParams.toString()})
-        }
-        setIsReadyToFetch(true)
-    }
 
     function handleFilterUpdate(update: {[key: string]: string | number}): void {
         for (const key in update) {
@@ -81,7 +62,9 @@ export function Drivers(): ReactElement {
     }
 
     useEffect(() => {
-        setDefaultParams()
+        setDefaultParams(queryParams, filterDefaults)
+        navigate({search: queryParams.toString()})
+        setIsReadyToFetch(true)
     }, [])
 
     useEffect(() => {
