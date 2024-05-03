@@ -79,7 +79,7 @@ export function Stats(): ReactElement {
 
     return (
         <article className="stats">
-            <SelectBox setCarTrack={handleCarTrackChange}/>
+            <SelectBox setCarTrack={handleCarTrackChange} car={car} track={track}/>
             {isSuccess && lapsExist && <>
             <Table pagination={pagination!} data={toLapsTableFormat(laps)} type="stats" handleBodyRowClick={handleTableBodyRowClick}/>
             <Pagination pagination={pagination!} handlePaging={handlePaging}/></>

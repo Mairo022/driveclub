@@ -4,17 +4,19 @@ import {useFetch} from "../../hooks/useFetch";
 import {getCars, getTracks} from "../../services/statsService";
 
 export default function SelectBox(props: ISelectBoxProps): ReactElement {
-    const {setCarTrack} = props
+    const {setCarTrack, car, track} = props
 
     const [selectedTrackOption, setSelectedTrackOption] = useState<number>(1)
     const [selectedCarOption, setSelectedCarOption] = useState<number>(1000)
-    const [selectedTrack, setSelectedTrack] = useState<string>("")
-    const [selectedCar, setSelectedCar] = useState<string>("")
+    const [selectedTrack, setSelectedTrack] = useState<string>(track ?? "")
+    const [selectedCar, setSelectedCar] = useState<string>(car ?? "")
 
     const {data, isLoading, isSuccess, isError, error} = useFetch([
         {fn: getCars, params: [undefined]},
         {fn: getTracks, params: [undefined]}
     ])
+
+    const [cars, tracks] = data ?? [];
 
     const handleTrackOptionChange = (e: any): void => {
         setSelectedTrack(e.target.dataset.name)
@@ -31,19 +33,25 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
         e.preventDefault()
     }
 
+    function setCarTrackValues() {
+        if (car) setSelectedCarOption(cars.indexOf(car) + 1000)
+        if (track) setSelectedTrackOption(tracks.indexOf(track))
+
+        if (!car) setSelectedCar(cars[selectedCarOption - 1000])
+        if (!track) setSelectedTrack(tracks[selectedTrackOption])
+    }
+
     useEffect(() => {
         if (!data) return
-        setSelectedCar(data[0][selectedCarOption - 1000])
-        setSelectedTrack(data[1][selectedTrackOption])
-    }, [data])
-
+        setCarTrackValues()
+    }, [data, car, track])
 
     return (<>
         {isSuccess &&
         <form onSubmit={handleSearch} className="search">
             <div className="select-box">
                 <div className="select-box__current" tabIndex={1}>{
-                    data[1].map((track: string, index: number) => (
+                    tracks.map((track: string, index: number) => (
                         <div className="select-box__value" key={index}>
                             <input
                                 className="select-box__input"
@@ -66,7 +74,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
                     />
                 </div>
                 <ul className="select-box__list">{
-                    data[1].map((track: string, index: number) => (
+                    tracks.map((track: string, index: number) => (
                         <li key={index}>
                             <label className="select-box__option" htmlFor={index.toString()} aria-hidden="true">{track}</label>
                         </li>
@@ -76,7 +84,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
 
             <div className="select-box">
                 <div className="select-box__current" tabIndex={2}>{
-                    data[0].map((car: string, index: number) => (
+                    cars.map((car: string, index: number) => (
                         <div className="select-box__value" key={index}>
                             <input
                                 className="select-box__input"
@@ -99,7 +107,7 @@ export default function SelectBox(props: ISelectBoxProps): ReactElement {
                     />
                 </div>
                 <ul className="select-box__list">{
-                    data[0].map((car: string, index: number) => (
+                    cars.map((car: string, index: number) => (
                         <li key={index}>
                             <label className="select-box__option" htmlFor={(index+1000).toString()} aria-hidden="true">{car}</label>
                         </li>
