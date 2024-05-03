@@ -63,7 +63,7 @@ export function Drivers(): ReactElement {
 
     useEffect(() => {
         setDefaultParams(queryParams, filterDefaults)
-        navigate({search: queryParams.toString()})
+        navigate({search: queryParams.toString()}, {replace: true})
         setIsReadyToFetch(true)
     }, [])
 

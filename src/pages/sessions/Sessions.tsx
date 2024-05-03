@@ -97,10 +97,9 @@ export function Sessions(): ReactElement {
         })
     }
 
-
     useEffect(() => {
         setDefaultParams(queryParams, filterDefaults)
-        navigate({search: queryParams.toString()})
+        navigate({search: queryParams.toString()}, {replace: true})
         setIsReadyToFetch(true)
     }, [])
 
