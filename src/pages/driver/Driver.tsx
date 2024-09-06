@@ -54,7 +54,7 @@ export function Driver(): ReactElement {
             </div>
             <Laptimes driverID={id}/></>}
             {isError && <span className="error">{error}</span>}
-            {isLoading && <span className="loading">Loading...</span>}
+            {isLoading && <span className="loading"></span>}
         </article>
     )
 }

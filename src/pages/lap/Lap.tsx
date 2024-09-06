@@ -66,7 +66,7 @@ export function Lap(): ReactElement {
                 <Table data={[lapToTableFormat(data)]} type="lap"/>
             </div></>}
             {isError && <span className="error">{error}</span>}
-            {isLoading && <span className="loading">Loading...</span>}
+            {isLoading && <span className="loading"></span>}
         </article>
     )
 }

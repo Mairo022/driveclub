@@ -31,7 +31,7 @@ export function Laptimes(props: ILaptimesProps): ReactElement {
             {isSuccess && lapsExist && <>
             <Table data={toLapsTableFormat(laps)} type="laps" handleBodyRowClick={handleTableBodyRowClick}/></>}
             {isError && <span className="error">{error}</span>}
-            {isLoading && <span className="loading">Loading laps...</span>}
+            {isLoading && <span className="loading"></span>}
         </div>
     )
 }

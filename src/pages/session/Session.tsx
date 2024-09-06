@@ -138,7 +138,7 @@ export function Session(): ReactElement {
                 <DriverLaps driverID={selectedDriverID} sessionID={sessionID} isOpen={isDriverLapsOpen} setIsOpen={setIsDriverLapsOpen}/>
             </>}
             {isError && <span className="error">{error}</span>}
-            {isLoading && <span className="loading">Loading...</span>}
+            {isLoading && <span className="loading"></span>}
         </article>
     )
 }

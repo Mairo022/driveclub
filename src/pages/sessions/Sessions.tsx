@@ -118,7 +118,7 @@ export function Sessions(): ReactElement {
                 <Pagination pagination={pagination!} handlePaging={handlePaging}/></>
             }
             {isError && <span className="error">{error}</span>}
-            {isLoading && <span className="loading">Loading...</span>}
+            {isLoading && <span className="loading"></span>}
         </article>
     )
 }
