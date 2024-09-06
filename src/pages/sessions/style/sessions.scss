@@ -8,7 +8,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      color: $font_color_dark;
+      color: $text-primary;
       padding: 12px 20px;
     }
 
@@ -29,7 +29,6 @@
         flex-grow: 1;
         flex-shrink: 0;
         min-width: fit-content;
-        font-family: 'Roboto Medium', $fonts_default;
       }
 
       &__results {
@@ -40,6 +39,7 @@
       }
 
       &__date {
+        color: $text-secondary;
         flex-basis: 0;
         flex-grow: 1;
         flex-shrink: 0;
@@ -52,9 +52,11 @@
 
 @media screen and (max-width: 750px) {
   .sessions {
-
     .session__link {
       flex-direction: column;
     }
+  }
+  .session {
+    margin-bottom: 1rem!important;
   }
 }

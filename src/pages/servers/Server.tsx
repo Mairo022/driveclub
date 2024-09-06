@@ -33,7 +33,7 @@ export function Server(props: IServerProps) {
                 <span className="server__cars__car" key={i}>{car}</span>))}
             </div>
             <div className={`server__activity${openClassName}`}>
-                <p className="server__activity__description">Currently online</p>
+                <p className="server__activity__description">Online</p>
                 <div className="server__activity__online">
                     <Table data={server.drivers} type="online" handleBodyRowClick={handleTableBodyRowClick}/>
                 </div>

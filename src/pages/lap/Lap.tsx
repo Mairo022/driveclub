@@ -42,6 +42,10 @@ export function Lap(): ReactElement {
                         <p className="conditions__row__header">Road:</p>
                         <p className="conditions__row__data">{data.lap.session.road_temp}c</p>
                     </div>
+                    <div className="conditions__row">
+                        <p className="conditions__row__header">Penalties:</p>
+                        <p className="conditions__row__data">{String(data.lap.session.penalties)}</p>
+                    </div>
                 </div>
                 <div className="conditions">
                     <div className="conditions__row">
@@ -52,15 +56,9 @@ export function Lap(): ReactElement {
                         <p className="conditions__row__header">Tyre wear:</p>
                         <p className="conditions__row__data">{data.lap.session.tyre_wear_rate}</p>
                     </div>
-                </div>
-                <div className="conditions">
                     <div className="conditions__row">
                         <p className="conditions__row__header">Damage:</p>
                         <p className="conditions__row__data">{data.lap.session.damage}%</p>
-                    </div>
-                    <div className="conditions__row">
-                        <p className="conditions__row__header">Penalties:</p>
-                        <p className="conditions__row__data">{String(data.lap.session.penalties)}</p>
                     </div>
                 </div>
             </div>

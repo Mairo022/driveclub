@@ -43,10 +43,12 @@ article.driver {
     margin-bottom: 25px;
 
     .heading__driver {
+      color: $text-primary;
       font-size: 1.4em;
       margin-bottom: 7px;
     }
     .heading__driven {
+      color: $text-secondary;
       font-size: 0.93em;
     }
   }
@@ -56,9 +58,12 @@ article.driver {
     flex-wrap: wrap;
     justify-content: center;
     gap: 35px 50px;
+    color: $text-secondary;
 
     & .conditions {
-      flex-basis: 220px;
+      flex-basis: 300px;
+      flex-shrink: 1;
+      flex-grow: 1;
       margin: 0;
       padding: 4px 6px;
       border-radius: 3px;
@@ -67,11 +72,16 @@ article.driver {
       box-shadow: $page_box_shadow;
 
       &__row {
+        overflow: hidden;
         margin-top: 5px;
         padding: 2px 7px;
 
         &:last-child {
           margin-bottom: 5px;
+        }
+
+        &__header {
+          min-width: 140px;
         }
 
         &__data {
@@ -87,6 +97,20 @@ article.driver {
           background-color: #ececec;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .conditions__row {
+    text-align: center;
+    margin-bottom: 25px;
+
+
+    &__data {
+      width: 100%;
+      text-align: center;
+      display: block!important;
     }
   }
 }

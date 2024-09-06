@@ -19,11 +19,11 @@
 
   .header__row__title {
     text-transform: uppercase;
-    font-family: Roboto Bold, $fonts_default;
+    font-family: Roboto Medium, $fonts_default;
     font-size: 13px;
     letter-spacing: 0.5px;
     background-color: #66a3ff;
-    color: #30343b;
+    color: $text-primary;
 
     &:first-child {
       border-top-left-radius: 3px;
@@ -34,7 +34,7 @@
   }
 
   .body__row__item {
-    color: #3c4752;
+    color: $text-primary;
 
     &:first-child {
       font-family: Roboto Medium, $fonts_default;
@@ -304,7 +304,7 @@
             content: attr(data-label);
             float: left;
             text-transform: uppercase;
-            font-family: Roboto Bold, $fonts_default;
+            font-family: Roboto Medium, $fonts_default;
           }
         }
       }

@@ -1,6 +1,5 @@
 import { ReactElement } from "react";
 import {servers} from "./data/mockServers";
-import "./style/servers.scss";
 import { Server } from "./Server";
 
 export function Servers(): ReactElement {

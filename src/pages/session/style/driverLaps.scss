@@ -6,12 +6,14 @@
   transform: translateY(-50%);
   width: 95%;
   max-width: 1100px;
+  max-height: 600px;
   margin: 0 auto;
   padding: 30px 40px;
   border-radius: 3px;
   border: 1px solid #b8b8b8;
   box-shadow: $page_box_shadow;
-  color: $font_color_dark;
+  color: $text-primary;
+  overflow-y: auto;
 
   & .close {
     position: absolute;
@@ -21,29 +23,28 @@
     padding: 10px 15px;
     cursor: pointer;
     transition: background 0.15s ease;
-    box-shadow: 0 0 2px #6c6c6c;
-    background: #c6c6c6;
+    color: $text-secondary;
+    background-color: hsl(0, 0%, 92%);
+    border-left: 1px solid #b8b8b8;
+    border-bottom: 1px solid #b8b8b8;
     border-bottom-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-right-radius: 1px;
 
     &:hover {
-      transition: background 0.15s ease;
-      background: #e0e0e0;
+      transition: background-color 0.15s ease;
+      background-color: hsl(0, 0%, 82%);
     }
   }
 
   & .driver {
-    margin-left: 1px;
-    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 25px;
 
     &__link {
-      color: $font_color_dark;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-underline-mode: 5px;
+      color: $text-link-dark;
 
       &:hover {
-        color: $font_color_link_dark;
+        color: $text-link-hover;
       }
     }
   }

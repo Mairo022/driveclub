@@ -1,3 +1,5 @@
+@import "src/assets/variables";
+
 $responsiveWidth: 500px;
 
 .navbar {
@@ -20,20 +22,18 @@ $responsiveWidth: 500px;
     padding: 15px 0;
     text-align: center;
     font-size: 14px;
-    color: #8f8f8f;
+    color: $text-primary;
     clip-path: inset(0 -3px -3px -3px);
 
     &.active {
       z-index: 5;
-      color: #666666;
-      background-color: #FAFAFA;
+      background-color: #FCFCFC;
       box-shadow: 0 0 4px #bababa;
       clip-path: inset(0 -4px 0 -4px);
       pointer-events: none;
     }
 
     &:hover {
-      color: #666666;
       background-color: #FAFAFA;
       transition: 0.5s background-color ease-in-out;
     }

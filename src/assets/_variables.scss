@@ -1,9 +1,17 @@
 $fonts_default: Roboto Regular, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-$font_color_link: #25C2A0;
-$font_color_link_dark: #23AD96;
-$font_color_dark: #262326;
+// Text colour
+$text-primary: hsl(225, 6%, 20%);
+$text-secondary: hsl(200, 10%, 30%);
+$text-tertiary: hsl(200, 10%, 55%);
 
+$text-link: hsla(167, 68%, 48%, 80%);
+$text-link-hover: hsla(162, 90%, 45%, 90%);
+
+$text-link-dark: hsl(165, 85%, 35%);
+$text-link-hover-dark: hsla(162, 90%, 36%, 90%);
+
+// Page stuff
 $page_bg_color: rgba(245, 245, 245, 0.85);
 $page_padding: 20px 30px;
 $page_border_radius: 3px;

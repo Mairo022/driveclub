@@ -2,7 +2,7 @@
 
 .pagination {
   display: flex;
-  margin: 10px auto 0;
+  margin: 40px auto 0;
   width: fit-content;
   border-radius: 7px;
   background-color: white;
@@ -15,7 +15,7 @@
     border: none;
     line-height: 49px;
     font-size: 16px;
-    font-family: Roboto Medium, $fonts_default;
+    font-family: $fonts_default;
     color: #9a9a9a;
     background: transparent;
     transition: 0.1s color ease-in-out;
@@ -33,12 +33,15 @@
   }
 
   & > .page {
+    color: $text-secondary;
+
     &--active {
       color: #1f95cc;
     }
   }
 
   & > .step {
+    color: $text-tertiary;
     display: flex;
     align-items: center;
     justify-content: center;
