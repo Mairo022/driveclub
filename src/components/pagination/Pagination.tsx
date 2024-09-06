@@ -20,6 +20,17 @@ export function Pagination(props: IPagination): ReactElement {
         const lessPagesInFirstHalf = pageNow - toSides < 0
         const lessPagesInSecondHalf = pageNow + toSides > pagesTotal
 
+        if (pagesTotal <= pagesShown) {
+            startPage = 1
+            endPage = pagesTotal + 1
+
+            for (let i = startPage; i <= endPage; i++) {
+                pages.push(i)
+            }
+
+            return pages
+        }
+
         if (lessPagesInFirstHalf) {
             startPage = 1
             endPage = pagesShown
@@ -32,10 +43,10 @@ export function Pagination(props: IPagination): ReactElement {
         }
 
         for (let i = startPage; i <= endPage; i++) {
-            pages.push(i);
+            pages.push(i)
         }
 
-        return pages;
+        return pages
     }
 
     return (
