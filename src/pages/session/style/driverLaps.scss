@@ -1,19 +1,25 @@
 @import "src/assets/variables";
 
+.driverLaps.loaded {
+  max-height: 600px;
+  transition: max-height 0.5s ease-out;
+  overflow-y: auto;
+}
+
 .driverLaps {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
   width: 95%;
   max-width: 1100px;
-  max-height: 600px;
+  max-height: 200px;
   margin: 0 auto;
   padding: 30px 40px;
   border-radius: 3px;
   border: 1px solid #b8b8b8;
   box-shadow: $page_box_shadow;
   color: $text-primary;
-  overflow-y: auto;
+  overflow-y: hidden;
 
   & .close {
     position: absolute;
@@ -47,9 +53,5 @@
         color: $text-link-hover;
       }
     }
-  }
-
-  & .laps {
-    overflow-y: auto;
   }
 }

@@ -50,7 +50,7 @@ export function DriverLaps(props: IDriverLapsProps): ReactElement {
     }, [data])
 
     return (
-        <dialog open={isOpen} className="driverLaps">
+        <dialog open={isOpen} className={`driverLaps${isSuccess ? " loaded" : ""}`}>
             {isSuccess && <>
                 <span className="close" onClick={() => {setIsOpen(false)}}>Close</span>
                 <h3 className="driver">
